@@ -13,6 +13,11 @@
 		FCD44E711AF88AC200F18D35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCD44E701AF88AC200F18D35 /* Images.xcassets */; };
 		FCD44E741AF88AC200F18D35 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */; };
 		FCD44E801AF88AC200F18D35 /* EventHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E7F1AF88AC200F18D35 /* EventHandlerTests.swift */; };
+		FCD44E8A1AF88C0E00F18D35 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E891AF88C0E00F18D35 /* User.swift */; };
+		FCD44E8C1AF88E5300F18D35 /* EventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E8B1AF88E5300F18D35 /* EventViewer.swift */; };
+		FCD44E8E1AF88FCB00F18D35 /* EventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E8D1AF88FCB00F18D35 /* EventCreator.swift */; };
+		FCD44E901AF8903D00F18D35 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E8F1AF8903D00F18D35 /* Location.swift */; };
+		FCD44E921AF8964400F18D35 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E911AF8964400F18D35 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,11 @@
 		FCD44E791AF88AC200F18D35 /* EventHandlerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventHandlerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD44E7E1AF88AC200F18D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD44E7F1AF88AC200F18D35 /* EventHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandlerTests.swift; sourceTree = "<group>"; };
+		FCD44E891AF88C0E00F18D35 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FCD44E8B1AF88E5300F18D35 /* EventViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewer.swift; sourceTree = "<group>"; };
+		FCD44E8D1AF88FCB00F18D35 /* EventCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreator.swift; sourceTree = "<group>"; };
+		FCD44E8F1AF8903D00F18D35 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FCD44E911AF8964400F18D35 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +87,17 @@
 		FCD44E661AF88AC200F18D35 /* EventHandler */ = {
 			isa = PBXGroup;
 			children = (
+				FCD44E8F1AF8903D00F18D35 /* Location.swift */,
+				FCD44E8D1AF88FCB00F18D35 /* EventCreator.swift */,
+				FCD44E8B1AF88E5300F18D35 /* EventViewer.swift */,
+				FCD44E891AF88C0E00F18D35 /* User.swift */,
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
 				FCD44E6B1AF88AC200F18D35 /* ViewController.swift */,
 				FCD44E6D1AF88AC200F18D35 /* Main.storyboard */,
 				FCD44E701AF88AC200F18D35 /* Images.xcassets */,
 				FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */,
 				FCD44E671AF88AC200F18D35 /* Supporting Files */,
+				FCD44E911AF8964400F18D35 /* Event.swift */,
 			);
 			path = EventHandler;
 			sourceTree = "<group>";
@@ -213,7 +228,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */,
+				FCD44E8C1AF88E5300F18D35 /* EventViewer.swift in Sources */,
 				FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */,
+				FCD44E8E1AF88FCB00F18D35 /* EventCreator.swift in Sources */,
+				FCD44E901AF8903D00F18D35 /* Location.swift in Sources */,
+				FCD44E921AF8964400F18D35 /* Event.swift in Sources */,
+				FCD44E8A1AF88C0E00F18D35 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
