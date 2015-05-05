@@ -1,0 +1,7 @@
+I will store some documentation here on the available calls for the database and how to use them.
+
+So far, I have two interfaces:
+	addFriendship.php
+	createUser.php
+
+I will add documentation on how to use these, what parameters they take, and what they return.
