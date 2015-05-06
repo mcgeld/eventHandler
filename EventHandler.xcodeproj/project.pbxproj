@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6D7281AF98C4C00A67045 /* mapView.swift */; };
 		FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E691AF88AC200F18D35 /* AppDelegate.swift */; };
 		FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E6B1AF88AC200F18D35 /* ViewController.swift */; };
 		FCD44E6F1AF88AC200F18D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCD44E6D1AF88AC200F18D35 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ADD6D7281AF98C4C00A67045 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		FCD44E641AF88AC200F18D35 /* EventHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD44E681AF88AC200F18D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD44E691AF88AC200F18D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
 				FCD44E6B1AF88AC200F18D35 /* ViewController.swift */,
 				FCD44E6D1AF88AC200F18D35 /* Main.storyboard */,
+				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
 				FCD44E701AF88AC200F18D35 /* Images.xcassets */,
 				FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */,
 				FCD44E671AF88AC200F18D35 /* Supporting Files */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */,
+				ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */,
 				FCD44E8C1AF88E5300F18D35 /* EventViewer.swift in Sources */,
 				FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */,
 				FCD44E8E1AF88FCB00F18D35 /* EventCreator.swift in Sources */,
@@ -427,6 +431,7 @@
 				FCD44E851AF88AC200F18D35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCD44E861AF88AC200F18D35 /* Build configuration list for PBXNativeTarget "EventHandlerTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +440,7 @@
 				FCD44E881AF88AC200F18D35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
