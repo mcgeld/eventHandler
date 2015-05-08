@@ -15,6 +15,7 @@ class Event
     var invitees :[User]
     var description : String
     var date : NSDate
+    var forum : Forum?
     
     init(loc : Location, creator : User, date: NSDate)
     {
@@ -24,6 +25,13 @@ class Event
         self.description = ""
         self.date = date
     }
+    
+    func updateForum(comment: Comment)
+    {
+        forum!.addComment(comment)
+    }
+    
+    
     
     
 }
