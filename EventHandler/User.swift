@@ -8,13 +8,28 @@
 
 import Foundation
 
-
-protocol User
+class User
 {
-    var name : String { get set }
-    var username : String { get set }
-    var phoneNumber : Int { get set }
-    var rating : Double { get set }
-    var defaultLocation : Location { get set }
+    var name : String
+    var username : String
+    var phoneNumber : Int
+    var rating : Double
+    var defaultLocation : Location
+    var createdEvents : [Event]
+    var invitedEvents : [Event]
     
+
+    
+    init(name : String, username : String, phone : Int, loc : Location)
+    {
+        self.name = name
+        self.username = username
+        self.phoneNumber = phone
+        self.defaultLocation = loc
+        self.rating = 100
+        self.createdEvents = [Event]()
+        self.invitedEvents = [Event]()
+    }
+    
+
 }

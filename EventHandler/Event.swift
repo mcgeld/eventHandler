@@ -11,7 +11,8 @@ import Foundation
 class Event
 {
     var location : Location
-    var creator : EventCreator
+    var creator : User
+    var invitees :[User]
     var description : String
     {
         get
@@ -24,10 +25,12 @@ class Event
         }
     }
     
-    init(loc : Location, creator : EventCreator)
+    
+    init(loc : Location, creator : User)
     {
         self.location = loc
         self.creator = creator
+        self.invitees = [User]()
         self.description = ""
     }
     
