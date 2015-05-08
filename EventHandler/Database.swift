@@ -10,7 +10,11 @@ import Foundation
 
 class Database {
     private var ip : String;
-    private var data : NSMutableData?;
+    //Error Codes:
+    // 0 : Successful connection and query
+    // 1 : Successful connection, situational failure
+    // 2 : Connection error
+    var dbErr : Int = 0;
     
     init(_ip : String)
     {
@@ -37,6 +41,7 @@ class Database {
     
     func login(username : String, password : String) -> systemUser?
     {
+        dbErr = 0;
         let result : NSDictionary = getWebResults(self.ip + "login.php?username=" + username + "&password=" + password)
         if(result["response"] as! String == "success")
         {
@@ -46,8 +51,14 @@ class Database {
             
             return temp
         }
+        else if(result["response"] as! String == "failure")
+        {
+            dbErr = 1
+            return nil
+        }
         else
         {
+            dbErr = 2
             return nil
         }
     }

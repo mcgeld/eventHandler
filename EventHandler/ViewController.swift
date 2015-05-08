@@ -8,7 +8,8 @@
 
 import UIKit
 //"Import" Database stuff
-let db = Database(_ip: "65.130.124.203");
+//let db = Database(_ip: "65.130.124.203");
+let db = Database(_ip: "192.168.0.29")
 
 class ViewController: UIViewController {
 
@@ -37,7 +38,14 @@ class ViewController: UIViewController {
         }
         else
         {
-            welcomeLabel.text = "Username or password incorrect. Try again."
+            if(db.dbErr == 1)
+            {
+                welcomeLabel.text = "Username or password incorrect. Try again."
+            }
+            else
+            {
+                welcomeLabel.text = "There has been a connection error. Please contact your system administrator."
+            }
         }
     }
     //Segmented View
@@ -54,11 +62,14 @@ class ViewController: UIViewController {
         case 1:
             welcomeLabel.text="Second Segment Selected";
         case 2:
+            /* TESTING FOR LOGIN
             passwordLabel.hidden = false;
             passwordTextField.hidden = false;
             usernameLabel.hidden = false;
             usernameTextField.hidden = false;
             loginButton.hidden = false;
+            */
+            welcomeLabel.text="Second Segment Selected";
         default:
             break; 
         }
