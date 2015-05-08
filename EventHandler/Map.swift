@@ -12,9 +12,9 @@ import Foundation
 class Map
 {
     var events : [Event]?
-    var range : Int
+    var range : Double
     
-    init(r: Int)
+    init(r: Double)
     {
         self.range = r
     }
@@ -25,5 +25,12 @@ class Map
     {
         self.events!.append(e)
     }
+    
+    func updateRange(r: Double)
+    {
+        self.range = r
+    }
+    
+    
     
 }

@@ -31,5 +31,18 @@ class User
         self.invitedEvents = [Event]()
     }
     
+    
+    func addEvent(e: Event)
+    {
+        createdEvents.append(e)
+    }
+    
+    func addToInvitedList(e: Event)
+    {
+        invitedEvents.append(e)
+    }
+    
+    
+    
 
 }
