@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59ED426C1B069AF500B23B9C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED426B1B069AF500B23B9C /* Database.swift */; };
 		ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6D7281AF98C4C00A67045 /* mapView.swift */; };
 		FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E691AF88AC200F18D35 /* AppDelegate.swift */; };
 		FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E6B1AF88AC200F18D35 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		59ED426B1B069AF500B23B9C /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		ADD6D7281AF98C4C00A67045 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		FCD44E641AF88AC200F18D35 /* EventHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD44E681AF88AC200F18D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		FCD44E661AF88AC200F18D35 /* EventHandler */ = {
 			isa = PBXGroup;
 			children = (
+				59ED426B1B069AF500B23B9C /* Database.swift */,
 				FCD44E971AFC901400F18D35 /* Comment.swift */,
 				FCD44E951AFC8E0E00F18D35 /* Forum.swift */,
 				FCD44E931AFC2F1E00F18D35 /* Map.swift */,
@@ -241,6 +244,7 @@
 				FCD44E921AF8964400F18D35 /* Event.swift in Sources */,
 				FCD44E8A1AF88C0E00F18D35 /* User.swift in Sources */,
 				FCD44E981AFC901400F18D35 /* Comment.swift in Sources */,
+				59ED426C1B069AF500B23B9C /* Database.swift in Sources */,
 				FCD44E961AFC8E0E00F18D35 /* Forum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
