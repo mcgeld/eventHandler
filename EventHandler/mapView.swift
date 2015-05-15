@@ -56,7 +56,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             }
             
             if placemarks.count > 0 {
-                let pm = placemarks[0] as CLPlacemark
+                let pm = placemarks[0] as! CLPlacemark
                 self.displayLocationInfo(pm)
             } else {
                 println("Problem with the data received from geocoder")

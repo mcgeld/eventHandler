@@ -10,29 +10,26 @@ import Foundation
 
 class User
 {
-    var name : String
+    var id : Int
+    var firstName : String
+    var lastName : String
     var username : String
     var phoneNumber : Int
     var rating : Double
     var defaultLocation : Location
-    var createdEvents : [Event]
-    var invitedEvents : [Event]
     
-
-    
-    init(name : String, username : String, phone : Int, loc : Location)
+    init(_id : Int, _firstName : String, _lastName : String, _username : String, _phoneNumber : Int, _rating : Double, _defaultLocation : Location)
     {
-        self.name = name
-        self.username = username
-        self.phoneNumber = phone
-        self.defaultLocation = loc
-        self.rating = 100
-        self.createdEvents = [Event]()
-        self.invitedEvents = [Event]()
+        self.id = _id
+        self.firstName = _firstName
+        self.lastName = _lastName
+        self.username = _username
+        self.phoneNumber = _phoneNumber
+        self.defaultLocation = _defaultLocation
+        self.rating = _rating
     }
     
-    
-    func addEvent(e: Event)
+    /*func addEvent(e: Event)
     {
         createdEvents.append(e)
     }
@@ -40,9 +37,5 @@ class User
     func addToInvitedList(e: Event)
     {
         invitedEvents.append(e)
-    }
-    
-    
-    
-
+    }*/
 }

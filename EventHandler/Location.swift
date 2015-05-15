@@ -11,28 +11,7 @@ import Foundation
 class Location
 {
     var latitude : Double
-    {
-        get
-        {
-            return self.latitude
-        }
-        set(lat)
-        {
-            self.latitude = lat
-        }
-    }
-    
     var longitude : Double
-    {
-        get
-        {
-            return self.longitude
-        }
-        set(lon)
-        {
-            self.longitude = lon
-        }
-    }
     
     init(lat : Double, lon : Double)
     {

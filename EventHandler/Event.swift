@@ -10,20 +10,26 @@ import Foundation
 
 class Event
 {
-    var location : Location
-    var creator : User
-    var invitees :[User]
+    var id : Int
+    var title : String
     var description : String
     var date : NSDate
+    var duration : Int
+    var location : Location
+    var privateEvent : Bool
+    var maxAttendance : Int
+    var minRating : Double
     
-    init(loc : Location, creator : User, date: NSDate)
+    init(_id : Int, _title : String, _description : String, _date : NSDate, _duration : Int, _location : Location, _private : Bool, _maxAttendance : Int, _minRating : Double)
     {
-        self.location = loc
-        self.creator = creator
-        self.invitees = [User]()
-        self.description = ""
-        self.date = date
+        self.id = _id
+        self.title = _title
+        self.description = _description
+        self.date = _date
+        self.duration = _duration
+        self.location = _location
+        self.privateEvent = _private
+        self.maxAttendance = _maxAttendance
+        self.minRating = _minRating
     }
-    
-    
 }

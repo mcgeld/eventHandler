@@ -39,15 +39,22 @@ class Database {
         return responseObject!
     }
     
-    func login(username : String, password : String) -> systemUser?
+    func login(username : String, password : String) -> User?
     {
         dbErr = 0;
         let result : NSDictionary = getWebResults(self.ip + "login.php?username=" + username + "&password=" + password)
         if(result["response"] as! String == "success")
         {
             let innerResult = result["result"] as! NSArray?
-            let idParm : String = innerResult![0]["id"] as! String
-            let temp : systemUser = systemUser(_id: innerResult![0]["id"] as! String, _username: username, _attendance: innerResult![0]["attendance"] as! String, _location: innerResult![0]["location"] as! String, _phone: innerResult![0]["phone"] as! String)
+            let id = (innerResult![0]["id"] as! String).toInt()!
+            let firstName = innerResult![0]["firstName"] as! String
+            let lastName = innerResult![0]["lastName"] as! String
+            let phoneNumber = (innerResult![0]["phone"] as! String).toInt()!
+            let rating = (innerResult![0]["rating"] as! NSString).doubleValue
+            let locationLat = (innerResult![0]["locationLat"] as! NSString).doubleValue
+            let locationLon = (innerResult![0]["locationLon"] as! NSString).doubleValue
+            
+            let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber, _rating: rating, _defaultLocation: Location(lat: locationLat, lon: locationLon))
             
             return temp
         }
@@ -63,4 +70,22 @@ class Database {
         }
     }
     
+    func getEventsByLocation(location : Location, range : Int)
+    {
+        dbErr = 0;
+        var latString : String = String(format: "%f", location.latitude);
+        let result : NSDictionary = getWebResults(self.ip + "getEventsByLocation.php?lat=" + String(format: "%f", location.latitude) + "&lon=" + String(format: "%f", location.longitude) + "&range=" + String(range))
+        if(result["response"] as! String == "success")
+        {
+            let innerResult = result["result"] as! NSArray?
+            for(var i = 0; i < innerResult?.count; i++)
+            {
+                let id = (innerResult![i]["id"] as! String).toInt()!
+                let title = innerResult![i]["title"] as! String
+                let description = innerResult![i]["description"] as! String
+                let dateFormatter = NSDateFormatter();
+            }
+        }
+        
+    }
 };

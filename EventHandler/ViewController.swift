@@ -7,6 +7,9 @@
 //
 
 import UIKit
+var db = Database(_ip: "vientapps.com/eventHandler")
+//var db = Database(_ip: "192.168.0.29")
+var user : User? = nil
 
 class ViewController: UIViewController {
 
@@ -15,9 +18,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
     }
-
-   
-
 
     //Segmented View
     
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         case 1:
             welcomeLabel.text="Second Segment Selecte";
         case 2:
-            welcomeLabel.text="Third label selected";
+            welcomeLabel.text = "Login Segment Selected";
         default:
             break; 
         }
