@@ -13,14 +13,14 @@ class Event
     var id : Int
     var title : String
     var description : String
-    var date : NSDate
+    var date : DateTime
     var duration : Int
     var location : Location
     var privateEvent : Bool
     var maxAttendance : Int
     var minRating : Double
     
-    init(_id : Int, _title : String, _description : String, _date : NSDate, _duration : Int, _location : Location, _private : Bool, _maxAttendance : Int, _minRating : Double)
+    init(_id : Int, _title : String, _description : String, _date : DateTime, _duration : Int, _location : Location, _private : Bool, _maxAttendance : Int, _minRating : Double)
     {
         self.id = _id
         self.title = _title
