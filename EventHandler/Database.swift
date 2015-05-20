@@ -14,19 +14,19 @@ class Database {
     // 0 : Successful connection and query
     // 1 : Successful connection, situational failure
     // 2 : Connection error
-    var dbErr : Int = 0;
+    var dbErr : Int = 0
+    var dbMessage : String = ""
     
     init(_ip : String)
     {
-         self.ip = "http://" + _ip + "/";
+         self.ip = "http://" + _ip + "/"
     }
     
     private func getWebResults(url : String) -> NSDictionary
     {
-        var request = NSMutableURLRequest(URL: NSURL(string: url.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
+        var request = NSMutableURLRequest(URL: NSURL(string: url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)
         var response: NSURLResponse?
         var error: NSError?
-        
         
         let jsonString = ""
         request.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
@@ -43,6 +43,7 @@ class Database {
     {
         dbErr = 0;
         let result : NSDictionary = getWebResults(self.ip + "login.php?username=" + username + "&password=" + password)
+        dbMessage = result["message"] as! String
         if(result["response"] as! String == "success")
         {
             let innerResult = result["result"] as! NSArray?
@@ -72,9 +73,10 @@ class Database {
     
     func getEventsByLocation(location : Location, range : Int) -> [Event]?
     {
-        dbErr = 0;
-        var latString : String = String(format: "%f", location.latitude);
+        dbErr = 0
+        var latString : String = String(format: "%f", location.latitude)
         let result : NSDictionary = getWebResults(self.ip + "getEventsByLocation.php?lat=" + String(format: "%f", location.latitude) + "&lon=" + String(format: "%f", location.longitude) + "&range=" + String(range))
+        dbMessage = result["message"] as! String
         if(result["response"] as! String == "success")
         {
             let innerResult = result["result"] as! NSArray?
@@ -94,6 +96,31 @@ class Database {
                 returnList.append(Event(_id: id, _title: title, _description: description, _date: date, _duration: duration, _location: location, _private: privateEvent, _maxAttendance: maxAttendance!, _minRating: minRating))
             }
             return returnList
+        }
+        else if(result["response"] as! String == "failure")
+        {
+            dbErr = 1
+            return nil
+        }
+        else
+        {
+            dbErr = 2
+            return nil
+        }
+    }
+    
+    func createEvent(_userId : Int, _title : String, _description : String, _date : DateTime, _duration : Int, _location : Location, _private : Bool, _maxAttendance : Int, _minRating : Double) -> Event?
+    {
+        dbErr = 0
+        let result : NSDictionary = getWebResults(self.ip + "createEvent.php?userId=" + String(_userId) + "&title=" + _title + "&description=" + _description + "&date=" + _date.toString() + "&duration=" + String(_duration) + "&locationLat=" + String(format: "%f", _location.latitude) + "&locationLon=" + String(format: "%f", _location.longitude) + "&private=" + (_private ? "1" : "0") + "&maxAttendance=" + String(_maxAttendance) + "&minRating=" + String(format: "%f", _minRating))
+        dbMessage = result["message"] as! String
+        if(result["response"] as! String == "success")
+        {
+            let innerResult = result["result"] as! NSArray?
+            
+            let id = (innerResult![0]["id"] as! String).toInt()!
+            
+            return Event(_id: id, _title: _title, _description: _description, _date: _date, _duration: _duration, _location: _location, _private: _private, _maxAttendance: _maxAttendance, _minRating: _minRating)
         }
         else if(result["response"] as! String == "failure")
         {

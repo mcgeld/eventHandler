@@ -24,4 +24,9 @@ class DateTime {
         self.hour = dateTimeInfo[3].toInt()!
         self.minute = dateTimeInfo[4].toInt()!
     }
+    
+    func toString() -> String
+    {
+        return String(year) + ":" + String(month) + ":" + String(day) + ":" + String(hour) + ":" + String(minute)
+    }
 }
