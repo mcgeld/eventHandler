@@ -10,75 +10,81 @@ DATABASE API DOCUMENTATION
 #       Vient Apps        #
 ###########################
 
-For now, this document will be used as notes as the code is being developed.
-Later, I will polish it up so it can be used for reference to the API.
+TABLE OF CONTENTS:
+1. Flow Diagram
+2. Standardization
+3. List of available Functions
+4. Definitions of available Functions
 
-The planned flow of code is as follows:
+
+
+
+
+
+##############################
+#         CHAPTER 1          #
+#        FLOW DIAGRAM        #
+##############################
+
+The flow of code is as follows:
 
 ----------------------------------------------------------------------------
 On app creation, a global db object is created
                     |
-                    |
                     V
 User completes action in app that requires db crud
-                    |
                     |
                     V
 Event handler code for action calls appropriate method of global db object and passes any necessary parameters
                     |
-                    |
                     V
 db object method creates httprequest and calls appropriate url/php script with necessary url parameters
-                    |
                     |
                     V
 server php script uses url parameters to call the associated stored procedure from the server through phpmyadmin/mysqli functionality
                     |
-                    |
                     V
 stored procedure on server db executes with parameters and returns results to php script
                     |
-                    |
                     V
 php script interprets results and returns a json string as appropriate.
-                    |
                     |
                     V
 db object in app collects and objectifies the json string into the appropriate object and returns said object to the calling code.
 ---------------------------------------------------------------------------
 
-All php scripts return the following JSON object:
 
+
+
+
+
+##############################
+#         CHAPTER 2          #
+#      STANDARDIZATION       #
+##############################
+
+In order to standardize all output from the httpRequests, the following standardization has been made:
+
+All php scripts return the following JSON object:
 {
 	response : (either "error", "failure", or "success"),
 	message : (message related to action performed and response),
-	result : [(array of results from the database if appropriate)]
+	result : [(array of result objects from the database if appropriate)]
 }
 
-TODO(procs, php):
-	removeFriendship
-	getUserEvents
-	getEvent
-	createEvent
-	removeEvent
-	updateEvent
-	updateUser
-	getUser
-	removeUser
-	
-	
 
-DONE(procs, php):
-	createUser
-		parameters: username, password, location, phone
-		returns: []
-	addFriendship
-		parameters: frienderId, friendeeId
-		result: []
-	login
-		parameters: username, password
-		result: [id, attendance, location, phone] single user
-	getFriends
-		parameters: id
-		result [id, username, attendance, location, phone] all friends
-	
+
+
+
+
+
+
+
+
+##############################
+#         CHAPTER 3          #
+#          LIST OF           #
+#    AVAILABLE FUNCTIONS     #
+##############################
+
+
