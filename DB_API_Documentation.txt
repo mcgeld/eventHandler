@@ -78,13 +78,104 @@ All php scripts return the following JSON object:
 
 
 
-
-
-
 ##############################
 #         CHAPTER 3          #
 #          LIST OF           #
 #    AVAILABLE FUNCTIONS     #
 ##############################
 
+Here is a list of all available functions. Please see Chapter 4 for more detailed information about each of these functions including return types, parameters, return codes, etc.
 
+------------------------
+login
+getEventsByLocation
+createEvent
+
+
+
+
+
+
+
+##############################
+#         CHAPTER 4          #
+#      DEFINITIONS OF        #
+#    AVAILABLE FUNCTIONS     #
+##############################
+
+This chapter contains detailed definitions and specifications of how the available functions in chapter 3 work. Descriptions will include return values, expected parameters and any other pertinent information to programming with these funcitons.
+
+The programmer should know that there is a dbErr variable of the Database class that will give added information about any unsuccessful attempts at any queries.Those values will be specific to the function being called.
+
+
+
+*************
+**  login  **
+*************
+
+DESCRIPTION:
+    The login function should be used when a user of the system is attempting to log in to their account. Using the results of the login function will allow the programmer to know if the login was successful or not and doubles as a getUser function on successful login.
+
+PARAMETERS:
+    username: String
+    password: String
+
+RETURN VALUES:
+    If the login is successful, meaning that a correct password was given with the corresponding username, a User object is returned from the login function populated with all the user information from the database, excluding the password.
+    When a login is unsuccessful, the login function returns nil.
+
+DBERR CODES:
+    0: Successful login
+    1: Unsuccessful login(mismatched username/password combination)
+    2: Connection/Query error
+
+ 
+
+***************************
+**  getEventsByLocation  **
+***************************
+
+DESCRIPTION:
+    The getEventsByLocation function returns an array of Event objects that are located within a specified range in miles given a specific location.
+
+PARAMETERS:
+    location: Location
+    range: Double
+
+RETURN VALUES:
+    If there are no query errors or connection errors, the function returns an array of Event objects that are within the given range of the specified location.
+    In the case of some error, the function returns nil.
+
+DBERR CODES:
+    0: Successful query
+    1: N/A
+    2: Connection/Query error
+
+
+
+*******************
+**  createEvent  **
+*******************
+
+DESCRIPTION:
+    The createEvent function creates an Event with the given parameters and stores it in the database.
+
+PARAMETERS:
+    userId: Int
+    title: String
+    description: String
+    date: DateTime
+    duration: Int
+    location: Location
+    private: Bool
+    maxAttendance: Int
+    minRating: Double
+
+RETURN VALUES:
+    The function returns a fully populated Event object in the case of a successful Event creation/storage in the database.
+    In the case of some error, the function returns nil.
+
+DBERR CODES:
+    0: Successful query
+    1: N/A
+    2: Connection/Query error
