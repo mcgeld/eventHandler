@@ -16,13 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUo-qj-w4y">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUo-qj-w4y">
                                 <rect key="frame" x="167" y="161" width="267" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="267" id="CK8-hK-nyx"/>
+                                    <constraint firstAttribute="height" constant="21" id="OoJ-MX-OmR"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Lu0-wh-0ZN">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Lu0-wh-0ZN">
                                 <rect key="frame" x="167" y="530" width="267" height="29"/>
                                 <segments>
                                     <segment title="Map"/>
@@ -44,6 +48,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JUo-qj-w4y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O4J-pz-prA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Lu0-wh-0ZN" secondAttribute="bottom" constant="42" id="Y2l-dA-VNb"/>
+                            <constraint firstItem="Lu0-wh-0ZN" firstAttribute="leading" secondItem="JUo-qj-w4y" secondAttribute="leading" id="qgq-Ar-K9V"/>
+                            <constraint firstItem="Lu0-wh-0ZN" firstAttribute="trailing" secondItem="JUo-qj-w4y" secondAttribute="trailing" id="s3b-FW-oSP"/>
+                            <constraint firstItem="JUo-qj-w4y" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="141" id="wEB-Pi-8Lq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bii-UK-ffp"/>
                     <connections>
@@ -70,6 +81,7 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
+                                <gestureRecognizers/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=".." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDz-ov-cIK">
                                 <rect key="frame" x="59" y="520" width="498" height="36"/>
