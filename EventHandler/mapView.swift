@@ -32,6 +32,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     @IBOutlet var distanceTextBoxOutlet: UITextField!
     
+    @IBOutlet var longPress: UILongPressGestureRecognizer!
+    
     @IBAction func distanceTextBox(sender: AnyObject)
     {
         var miles=(distanceTextBoxOutlet.text);
@@ -39,6 +41,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         theRadius=milesToMeters((miles as NSString).doubleValue);
         updateRegion=0;
         updateEvents();
+        
         
     }
     @IBOutlet var segmentControl: UISegmentedControl!
@@ -58,15 +61,16 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
     }
-    
+
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+       
 
-      
+
   
        
         
@@ -89,12 +93,33 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         map.mapType = MKMapType.Standard
         map.showsUserLocation = true
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
+        longPress.minimumPressDuration = 2.0
+        map.addGestureRecognizer(longPress)
         
         updateEvents();
-     
-    
-       
+        
+       // var user:User;
+        // var user=User(_id : 66, _firstName : "Caden", _lastName : "Sorenson", _username : "caden311", _phoneNumber : 4358811555, _rating : 9, _defaultLocation : Location)
+                
     }
+    
+    
+    func action(gestureRecognizer:UIGestureRecognizer) {
+
+    
+        var touchPoint = gestureRecognizer.locationInView(self.map)
+        var newCoord:CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
+        
+        var newAnotation = MKPointAnnotation()
+        newAnotation.coordinate = newCoord
+        newAnotation.title = "New Location"
+        newAnotation.subtitle = "New Subtitle"
+        map.addAnnotation(newAnotation)
+        
+    }
+   
+
     
     func updateEvents()
     {
@@ -102,10 +127,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
         
-        var e=db.getEventsByLocation(location, range: Int(toMiles(theSpan)));
+        var e=db.getEventsByLocation(location, range: toMiles(theSpan));
         for i in e!
         {
-        println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
+        //println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
         var annotation=MKPointAnnotation();
      
         
@@ -178,9 +203,39 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     }
     
     
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
+    {
+        //Create the AlertController
+        let annotationController: UIAlertController = UIAlertController(title: "New Location", message: "Swiftly Now! Choose an option!", preferredStyle: .ActionSheet)
+        
+        //Create and add the Cancel action
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            //Just dismiss the action sheet
+        }
+        annotationController.addAction(cancelAction)
+        //Create and add first option action
+        let setNewLocation: UIAlertAction = UIAlertAction(title: "Set As New Location", style: .Default) { action -> Void in
+            //Code for launching the camera goes here
+            
+        }
+        annotationController.addAction(setNewLocation)
+        //Create and add a second option action
+        let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
+            //Code for picking from camera roll goes here
+        }
+        annotationController.addAction(createNewEvent)
+        
+        //We need to provide a popover sourceView when using it on iPad
+        //actionSheetController.popoverPresentationController?.sourceView = sender as UIView;
+        
+        //Present the AlertController
+        self.presentViewController(annotationController, animated: true, completion: nil)
+        
+        
+    }
     
     
-    //**Adding a circle to the map **//
+    //**Addwing a circle to the map **//
     func addRadiusCircle(location: CLLocation){
         self.map.delegate = self
         //self.map.removeOverlay(circle);
