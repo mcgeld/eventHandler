@@ -102,7 +102,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
         
-        var e=db.getEventsByLocation(location, range: Int(toMiles(theSpan)));
+        var e=db.getEventsByLocation(location, range: Double(toMiles(theSpan)));
         for i in e!
         {
         println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
