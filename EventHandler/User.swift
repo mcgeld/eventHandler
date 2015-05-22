@@ -17,6 +17,7 @@ class User
     var phoneNumber : Int
     var rating : Double
     var defaultLocation : Location
+    var theSpan:Double //The length in degrees the user wants to display local events
     
     init(_id : Int, _firstName : String, _lastName : String, _username : String, _phoneNumber : Int, _rating : Double, _defaultLocation : Location)
     {
@@ -27,6 +28,7 @@ class User
         self.phoneNumber = _phoneNumber
         self.defaultLocation = _defaultLocation
         self.rating = _rating
+        self.theSpan=0.045
     }
     
     /*func addEvent(e: Event)
