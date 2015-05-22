@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import CoreLocation
 var db = Database(_ip: "vientapps.com/eventHandler")
 //var db = Database(_ip: "192.168.0.29")
-var user : User? = nil
+var user=db.login("caden311", password: "snow311");
 
-class ViewController: UIViewController {
 
+
+class ViewController: UIViewController, CLLocationManagerDelegate {
+
+    var manager:CLLocationManager!
+    
     override func viewDidLoad() {
+        
+        
+        //Setup our Location Manager
+        manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        manager.startUpdatingLocation()
+        
+        user?.defaultLocation.longitude=manager.location.coordinate.longitude
+       user?.defaultLocation.latitude=manager.location.coordinate.latitude
+
+        manager.stopUpdatingLocation()
+        
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         

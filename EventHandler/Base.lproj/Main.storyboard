@@ -26,7 +26,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Lu0-wh-0ZN">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="Lu0-wh-0ZN">
                                 <rect key="frame" x="167" y="530" width="267" height="29"/>
                                 <segments>
                                     <segment title="Map"/>
@@ -77,17 +77,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                                 <gestureRecognizers/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=".." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDz-ov-cIK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDz-ov-cIK">
                                 <rect key="frame" x="59" y="520" width="498" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Mj5-u0-aDK"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-7O-JLo">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vC7-7O-JLo">
                                 <rect key="frame" x="77" y="564" width="447" height="29"/>
                                 <segments>
                                     <segment title="First"/>
@@ -98,15 +101,18 @@
                                     <action selector="segmentAction:" destination="Gkn-yg-XIV" eventType="valueChanged" id="gfp-mB-Gic"/>
                                 </connections>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPb-So-BEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lPb-So-BEC">
                                 <rect key="frame" x="206" y="477" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="r2W-0a-uui"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="distanceTextBox:" destination="Gkn-yg-XIV" eventType="editingDidEnd" id="dMt-Zj-Cp8"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HST-JP-PXj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HST-JP-PXj">
                                 <rect key="frame" x="125" y="479" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,6 +120,22 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cDz-ov-cIK" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leadingMargin" constant="43" id="3Sf-mH-Q2w"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cDz-ov-cIK" secondAttribute="trailing" constant="27" id="3cw-5z-xhd"/>
+                            <constraint firstItem="vC7-7O-JLo" firstAttribute="top" secondItem="cDz-ov-cIK" secondAttribute="bottom" constant="8" symbolic="YES" id="4vC-ZV-cSi"/>
+                            <constraint firstItem="HST-JP-PXj" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leading" constant="125" id="8cA-Mo-26m"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leading" id="DUT-uk-JSk"/>
+                            <constraint firstItem="cDz-ov-cIK" firstAttribute="top" secondItem="lPb-So-BEC" secondAttribute="bottom" constant="13" id="JxT-IG-7t0"/>
+                            <constraint firstItem="9W0-lN-mls" firstAttribute="top" secondItem="vC7-7O-JLo" secondAttribute="bottom" constant="8" symbolic="YES" id="LXT-5l-s38"/>
+                            <constraint firstAttribute="trailing" secondItem="3fE-Ez-q6O" secondAttribute="trailing" id="TAt-Qc-COg"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="top" secondItem="DSx-tY-Pe7" secondAttribute="top" id="UjC-EJ-2Ng"/>
+                            <constraint firstItem="lPb-So-BEC" firstAttribute="leading" secondItem="HST-JP-PXj" secondAttribute="trailing" constant="40" id="UwK-0T-Q4M"/>
+                            <constraint firstItem="HST-JP-PXj" firstAttribute="top" secondItem="3fE-Ez-q6O" secondAttribute="bottom" constant="12" id="XV8-rQ-bkA"/>
+                            <constraint firstItem="lPb-So-BEC" firstAttribute="top" secondItem="3fE-Ez-q6O" secondAttribute="bottom" constant="10" id="fC8-lg-TFh"/>
+                            <constraint firstItem="vC7-7O-JLo" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leadingMargin" constant="61" id="lSg-hT-26B"/>
+                            <constraint firstItem="vC7-7O-JLo" firstAttribute="centerX" secondItem="3fE-Ez-q6O" secondAttribute="centerX" id="t1t-Zy-4At"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="distanceTextBoxOutlet" destination="lPb-So-BEC" id="h47-BN-Xp1"/>

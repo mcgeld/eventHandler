@@ -18,7 +18,7 @@ import CoreLocation
 class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
   
    
-    var theSpan=0.045
+   // var theSpan=0.045
     var theRadius=804.0
     var updateRegion=0;
    
@@ -36,8 +36,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     @IBAction func distanceTextBox(sender: AnyObject)
     {
+        manager.startUpdatingLocation()
         var miles=(distanceTextBoxOutlet.text);
-        theSpan=toSpan((miles as NSString).doubleValue);
+        user!.theSpan=toSpan((miles as NSString).doubleValue);
         theRadius=milesToMeters((miles as NSString).doubleValue);
         updateRegion=0;
         updateEvents();
@@ -123,11 +124,15 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     func updateEvents()
     {
-        var location = Location(lat: map.userLocation.coordinate.latitude, lon: map.userLocation.coordinate.longitude)
+        for i in pins
+        {
+            map.removeAnnotation(i);
+        }
+        //var location = Location(lat: map.userLocation.coordinate.latitude, lon: map.userLocation.coordinate.longitude)
         
+        var location=user!.defaultLocation;
         
-        
-        var e=db.getEventsByLocation(location, range: toMiles(theSpan));
+        var e=db.getEventsByLocation(location, range: toMiles(user!.theSpan));
         for i in e!
         {
         //println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
@@ -151,13 +156,13 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         //updating location function **** GAME LOOP ****
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject])
     {
-        //gives location in coordinates
-        //locationLabel.text="\(locations[0]) as CL"
        
+        
         if(updateRegion<8)
         {
-        let location=map.userLocation.coordinate
-        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(theSpan, theSpan))
+        //let location=map.userLocation.coordinate
+         let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
+        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(user!.theSpan, user!.theSpan))
         
         map.setRegion(newRegion, animated: true)
             println(updateRegion);
@@ -165,11 +170,16 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             
             println("Latitude \(location.latitude) and longitude: \(location.longitude)")
         }
+        else
+        {
+            
+            manager.stopUpdatingLocation()
+        }
 
         
        
         //current user location
-        var location1 = CLLocation(latitude: map.userLocation.coordinate.latitude, longitude: map.userLocation.coordinate.longitude)
+      //  var location1 = CLLocation(latitude: map.userLocation.coordinate.latitude, longitude: map.userLocation.coordinate.longitude)
         
         
         //Adding the circle to our location
@@ -181,7 +191,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
         //Coverting CLlocation to readable address
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+        let location1=CLLocation(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude)
+        CLGeocoder().reverseGeocodeLocation(location1, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
                 println("Reverse geocoder failed with error" + error.localizedDescription)
@@ -215,7 +226,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         annotationController.addAction(cancelAction)
         //Create and add first option action
         let setNewLocation: UIAlertAction = UIAlertAction(title: "Set As New Location", style: .Default) { action -> Void in
-            //Code for launching the camera goes here
+            user!.defaultLocation.latitude=view.annotation.coordinate.latitude
+            user!.defaultLocation.longitude=view.annotation.coordinate.longitude
+            self.manager.startUpdatingLocation()
+            self.updateRegion=0;
             
         }
         annotationController.addAction(setNewLocation)
@@ -263,7 +277,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             
             locationLabel.text="";
             var text="";
-        
+           // text+="\(placemark.subLocality) "
             text+="\(placemark.locality)"
             text+=" \(placemark.administrativeArea ),"
             text+=" \(placemark.postalCode ) "
