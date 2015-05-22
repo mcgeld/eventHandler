@@ -10,7 +10,7 @@ import UIKit
 
 class EventTableTableViewController: UITableViewController {
 
-   
+    
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     

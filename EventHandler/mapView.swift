@@ -54,7 +54,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         case 1:
             self.dismissViewControllerAnimated(true, completion: nil)
         case 2:
-            println("Profile");
+            self.dismissViewControllerAnimated(true, completion: nil)
         default:
             break;
         }
@@ -127,7 +127,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
         
-        var e=db.getEventsByLocation(location, range: Double(toMiles(theSpan)));
+        var e=db.getEventsByLocation(location, range: toMiles(theSpan));
         for i in e!
         {
         //println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");

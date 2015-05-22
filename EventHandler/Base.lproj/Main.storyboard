@@ -31,20 +31,17 @@
                                 <segments>
                                     <segment title="Map"/>
                                     <segment title="Second"/>
-                                    <segment title="Third"/>
+                                    <segment title="Events"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="g7Y-an-g1r"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ko-mt-w9l">
-                                <rect key="frame" x="381" y="395" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="277" y="368" width="37" height="30"/>
+                                <state key="normal" title="Table">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="ZXf-FJ-K7D" kind="show" id="3NM-jx-sbF"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -61,6 +58,7 @@
                         <outlet property="segmentControl" destination="Lu0-wh-0ZN" id="LaK-Si-Qpj"/>
                         <outlet property="welcomeLabel" destination="JUo-qj-w4y" id="WKN-jh-htk"/>
                         <segue destination="Gkn-yg-XIV" kind="show" identifier="mapSegue" id="4Ae-49-yKO"/>
+                        <segue destination="ZXf-FJ-K7D" kind="show" identifier="eventTableSegue" id="Tdo-vg-KQC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -94,7 +92,7 @@
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
-                                    <segment title=""/>
+                                    <segment title="Events"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentAction:" destination="Gkn-yg-XIV" eventType="valueChanged" id="gfp-mB-Gic"/>
@@ -128,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="1545" y="240"/>
         </scene>
-        <!--Event Table Table View Controller-->
+        <!--Title-->
         <scene sceneID="vdM-Ap-Qff">
             <objects>
                 <tableViewController id="ZXf-FJ-K7D" customClass="EventTableTableViewController" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,12 +134,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="uTK-Rd-zzm">
-                            <rect key="frame" x="-61" y="-14" width="600" height="29"/>
+                        <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" segmentControlStyle="plain" selectedSegmentIndex="0" id="uTK-Rd-zzm">
+                            <rect key="frame" x="0.0" y="66" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="First"/>
+                                <segment title="Map"/>
                                 <segment title="Second"/>
+                                <segment title="Events"/>
                             </segments>
                         </segmentedControl>
                         <prototypes>
@@ -157,24 +156,14 @@
                             <outlet property="delegate" destination="ZXf-FJ-K7D" id="jIZ-Nx-d9o"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cbh-zP-URS">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="50D-Pm-WEl">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YKo-RR-O8Z">
-                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="ur6-OC-rd8"/>
                     <connections>
                         <outlet property="segmentControl" destination="uTK-Rd-zzm" id="ziy-Ow-TVn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KkP-Jk-4lU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1605" y="1006"/>
+            <point key="canvasLocation" x="1545" y="988"/>
         </scene>
     </scenes>
 </document>

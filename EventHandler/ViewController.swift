@@ -32,9 +32,10 @@ class ViewController: UIViewController {
             self.performSegueWithIdentifier("mapSegue", sender: nil);
         case 1:
             welcomeLabel.text="Second Segment Selecte";
-            self.performSegueWithIdentifier("tableSeque", sender: nil);
+            
         case 2:
             welcomeLabel.text = "Login Segment Selected";
+            self.performSegueWithIdentifier("eventTableSegue", sender: nil);
         default:
             break; 
         }
