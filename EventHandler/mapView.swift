@@ -124,9 +124,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     func updateEvents()
     {
-        for i in pins
+        for(var i=pins.count-1; i>0; i--)
         {
-            map.removeAnnotation(i);
+            map.removeAnnotation(pins[i]);
+           pins.removeLast()
         }
         //var location = Location(lat: map.userLocation.coordinate.latitude, lon: map.userLocation.coordinate.longitude)
         
