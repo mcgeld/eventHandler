@@ -71,11 +71,11 @@ class Database {
         }
     }
     
-    func getEventsByLocation(location : Location, range : Double) -> [Event]?
+    func getEventsByLocation(userId : Int, location : Location, range : Double) -> [Event]?
     {
         dbErr = 0
         var latString : String = String(format: "%f", location.latitude)
-        let result : NSDictionary = getWebResults(self.ip + "getEventsByLocation.php?lat=" + String(format: "%f", location.latitude) + "&lon=" + String(format: "%f", location.longitude) + "&range=" + String(format: "%f", range))
+        let result : NSDictionary = getWebResults(self.ip + "getEventsByLocation.php?userId=" + String(userId) + "&lat=" + String(format: "%f", location.latitude) + "&lon=" + String(format: "%f", location.longitude) + "&range=" + String(format: "%f", range))
         dbMessage = result["message"] as! String
         if(result["response"] as! String == "success")
         {
