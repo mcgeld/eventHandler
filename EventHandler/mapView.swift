@@ -137,7 +137,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         var location=user!.defaultLocation;
         
-        var e=db.getEventsByLocation(location, range: toMiles(user!.theSpan));
+        var e=db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan));
         for i in e!
         {
         println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
