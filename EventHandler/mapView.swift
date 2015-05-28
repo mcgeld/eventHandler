@@ -20,7 +20,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
    
    // var theSpan=0.045
     var theRadius=804.0
-    var updateRegion=0;
+    var updateRegion=true;
    
    // var circle=MKCircle()
     
@@ -28,7 +28,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var map: MKMapView!
     var manager:CLLocationManager!
-     var pins = [MKPointAnnotation()]
+     var eventPins = [MKPointAnnotation()]
     
     @IBOutlet var distanceTextBoxOutlet: UITextField!
     
@@ -40,7 +40,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         var miles=(distanceTextBoxOutlet.text);
         user!.theSpan=toSpan((miles as NSString).doubleValue);
         theRadius=milesToMeters((miles as NSString).doubleValue);
-        updateRegion=0;
+        updateRegion=true;
         updateEvents();
         
         
@@ -53,9 +53,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         case 0:
             println("Welcome");
         case 1:
-            self.dismissViewControllerAnimated(true, completion: nil)
+            println("list view");
         case 2:
-            println("Profile");
+            self.dismissViewControllerAnimated(true, completion: nil);
         default:
             break;
         }
@@ -106,9 +106,11 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     }
     
     
-    func action(gestureRecognizer:UIGestureRecognizer) {
+    func action(gestureRecognizer:UIGestureRecognizer)
+    {
 
-    
+        if(gestureRecognizer.state==UIGestureRecognizerState.Began)
+        {
         var touchPoint = gestureRecognizer.locationInView(self.map)
         var newCoord:CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
         
@@ -117,6 +119,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         newAnotation.title = "New Location"
         newAnotation.subtitle = "New Subtitle"
         map.addAnnotation(newAnotation)
+        }
         
     }
    
@@ -124,19 +127,20 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     func updateEvents()
     {
-        for(var i=pins.count-1; i>0; i--)
+        for(var i=eventPins.count-1; i>0; i--)
         {
-            map.removeAnnotation(pins[i]);
-           pins.removeLast()
+            map.removeAnnotation(eventPins[i]);
+           eventPins.removeLast()
         }
         //var location = Location(lat: map.userLocation.coordinate.latitude, lon: map.userLocation.coordinate.longitude)
+        
         
         var location=user!.defaultLocation;
         
         var e=db.getEventsByLocation(location, range: toMiles(user!.theSpan));
         for i in e!
         {
-        //println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
+        println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
         var annotation=MKPointAnnotation();
      
         
@@ -150,7 +154,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         println(annotation.title + " " + annotation.subtitle);
        
         
-        pins.append(annotation);
+        eventPins.append(annotation);
         }
     }
     
@@ -159,15 +163,15 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     {
        
         
-        if(updateRegion<8)
+        if(updateRegion==true)
         {
         //let location=map.userLocation.coordinate
          let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
         var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(user!.theSpan, user!.theSpan))
         
         map.setRegion(newRegion, animated: true)
-            println(updateRegion);
-            updateRegion++
+            
+            updateRegion=false;
             
             println("Latitude \(location.latitude) and longitude: \(location.longitude)")
         }
@@ -217,6 +221,36 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
     {
+        var eventSelected=false;
+        var selected:MKPointAnnotation!;
+        if(mapView.selectedAnnotations.count>0)
+        {
+            if(mapView.selectedAnnotations[0] is MKUserLocation)
+            {
+                
+            }
+            else
+            {
+                selected=mapView.selectedAnnotations[0] as! MKPointAnnotation;
+            }
+        }
+    if(eventPins.count>0)
+    {
+       
+            if var s=selected
+            {
+                if contains(eventPins,s)
+                {
+                    eventSelected=true;
+                    println("Go to event page");
+            
+                }
+            }
+        
+        
+     }
+        if(eventSelected==false)
+        {
         //Create the AlertController
         let annotationController: UIAlertController = UIAlertController(title: "New Location", message: "Swiftly Now! Choose an option!", preferredStyle: .ActionSheet)
         
@@ -230,7 +264,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             user!.defaultLocation.latitude=view.annotation.coordinate.latitude
             user!.defaultLocation.longitude=view.annotation.coordinate.longitude
             self.manager.startUpdatingLocation()
-            self.updateRegion=0;
+            self.updateRegion=true;
             
         }
         annotationController.addAction(setNewLocation)
@@ -245,7 +279,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         //Present the AlertController
         self.presentViewController(annotationController, animated: true, completion: nil)
-        
+        }
         
     }
     
