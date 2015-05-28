@@ -71,11 +71,11 @@ class Database {
         }
     }
     
-    func getEventsByLocation(location : Location, range : Double) -> [Event]?
+    func getEventsByLocation(userId : Int, location : Location, range : Double) -> [Event]?
     {
         dbErr = 0
         var latString : String = String(format: "%f", location.latitude)
-        let result : NSDictionary = getWebResults(self.ip + "getEventsByLocation.php?lat=" + String(format: "%f", location.latitude) + "&lon=" + String(format: "%f", location.longitude) + "&range=" + String(format: "%f", range))
+        let result : NSDictionary = getWebResults(self.ip + "getEventsByLocation.php?userId=" + String(userId) + "&lat=" + String(format: "%f", location.latitude) + "&lon=" + String(format: "%f", location.longitude) + "&range=" + String(format: "%f", range))
         dbMessage = result["message"] as! String
         if(result["response"] as! String == "success")
         {
@@ -90,10 +90,11 @@ class Database {
                 let duration = (innerResult![i]["duration"] as! String).toInt()!
                 let location = Location(lat: (innerResult![i]["locationLat"] as! NSString).doubleValue, lon: (innerResult![i]["locationLon"] as! NSString).doubleValue)
                 let privateEvent = (innerResult![i]["privateEvent"] as! String) == "1"
-                let maxAttendance = (innerResult![i]["maxAttendance"] as! String).toInt()
+                let maxAttendance = (innerResult![i]["maxAttendance"] as! String).toInt()!
                 let minRating = (innerResult![i]["minRating"] as! NSString).doubleValue
+                let daysFromToday = (innerResult![i]["daysFromToday"] as! String).toInt()!
                 
-                returnList.append(Event(_id: id, _title: title, _description: description, _date: date, _duration: duration, _location: location, _private: privateEvent, _maxAttendance: maxAttendance!, _minRating: minRating))
+                returnList.append(Event(_id: id, _title: title, _description: description, _date: date, _duration: duration, _location: location, _private: privateEvent, _maxAttendance: maxAttendance, _minRating: minRating, _daysFromToday: daysFromToday))
             }
             return returnList
         }
@@ -119,8 +120,9 @@ class Database {
             let innerResult = result["result"] as! NSArray?
             
             let id = (innerResult![0]["id"] as! String).toInt()!
+            let daysFromToday = (innerResult![0]["daysFromToday"] as! String).toInt()!
             
-            return Event(_id: id, _title: _title, _description: _description, _date: _date, _duration: _duration, _location: _location, _private: _private, _maxAttendance: _maxAttendance, _minRating: _minRating)
+            return Event(_id: id, _title: _title, _description: _description, _date: _date, _duration: _duration, _location: _location, _private: _private, _maxAttendance: _maxAttendance, _minRating: _minRating, _daysFromToday: daysFromToday)
         }
         else if(result["response"] as! String == "failure")
         {
