@@ -21,8 +21,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
    // var theSpan=0.045
     var theRadius=804.0
     var updateRegion=true;
-   
-   // var circle=MKCircle()
+    var circleAdded=false;
+    var circle=MKCircle();
     
     //outlets
     @IBOutlet var locationLabel: UILabel!
@@ -140,7 +140,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         var e=db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan));
         for i in e!
         {
-        println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
+       // println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
         var annotation=MKPointAnnotation();
      
         
@@ -151,7 +151,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
       
         map.addAnnotation(annotation)
         
-        println(annotation.title + " " + annotation.subtitle);
+        //println(annotation.title + " " + annotation.subtitle);
        
         
         eventPins.append(annotation);
@@ -161,19 +161,21 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         //updating location function **** GAME LOOP ****
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject])
     {
-       
+        let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
         
         if(updateRegion==true)
         {
         //let location=map.userLocation.coordinate
-         let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
-        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(user!.theSpan, user!.theSpan))
+        
+        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake((user!.theSpan * sqrt(2.0)), user!.theSpan * sqrt(2.0)))
         
         map.setRegion(newRegion, animated: true)
             
+            updateEvents();
+            circleAdded=false;
             updateRegion=false;
             
-            println("Latitude \(location.latitude) and longitude: \(location.longitude)")
+            //println("Latitude \(location.latitude) and longitude: \(location.longitude)")
         }
         else
         {
@@ -189,9 +191,12 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         //Adding the circle to our location
         
-        
-               // addRadiusCircle(location1)
-              
+        if(circleAdded==false)
+        {
+            addRadiusCircle(CLLocation(latitude: location.latitude, longitude: location.longitude));
+            circleAdded=true;
+            
+        }
       
         
         
@@ -287,8 +292,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     //**Addwing a circle to the map **//
     func addRadiusCircle(location: CLLocation){
         self.map.delegate = self
-        //self.map.removeOverlay(circle);
-         var circle = MKCircle(centerCoordinate: location.coordinate, radius: theRadius as CLLocationDistance)
+        self.map.removeOverlay(circle);
+        
+        circle = MKCircle(centerCoordinate: location.coordinate, radius: (theRadius * sqrt(2.0))  as CLLocationDistance)
         
         self.map.addOverlay(circle)
     }
@@ -332,7 +338,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     func milesToMeters(miles:Double)->Double
     {
-        return miles/0.00062137;
+        return (miles/0.000621371195);
         
     }
     //conver to span of map
