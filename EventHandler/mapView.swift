@@ -15,7 +15,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
+class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   
    
    // var theSpan=0.045
@@ -23,10 +23,12 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     var updateRegion=true;
     var circleAdded=false;
     var circle=MKCircle();
+     var pickerDataSource = [".5", "1", "4", "10","15","25","50"];
     
     //outlets
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var map: MKMapView!
+    @IBOutlet var radiusButtonOutlet: UIButton!
     var manager:CLLocationManager!
      var eventPins = [MKPointAnnotation()]
     
@@ -34,17 +36,11 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     @IBOutlet var longPress: UILongPressGestureRecognizer!
     
-    @IBAction func distanceTextBox(sender: AnyObject)
-    {
-        manager.startUpdatingLocation()
-        var miles=(distanceTextBoxOutlet.text);
-        user!.theSpan=toSpan((miles as NSString).doubleValue);
-        theRadius=milesToMeters((miles as NSString).doubleValue);
-        updateRegion=true;
-        updateEvents();
-        
-        
+    @IBOutlet var milePicker: UIPickerView!
+    @IBAction func radiusButtonAction(sender: AnyObject) {
+        milePicker.hidden=false;
     }
+
     @IBOutlet var segmentControl: UISegmentedControl!
     @IBAction func segmentAction(sender: AnyObject)
     {
@@ -69,13 +65,22 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-       
-
-
-  
+        //picker view set up
        
         
-        distanceTextBoxOutlet.delegate=self;
+        self.milePicker.dataSource = self;
+        self.milePicker.delegate = self;
+        milePicker.hidden=true;
+    
+        milePicker.backgroundColor=UIColor.redColor();
+     
+        
+        //default range of view
+        user!.theSpan=toSpan(1);
+        theRadius=milesToMeters(1);
+       
+        
+   
         
         
         //Setup our Location Manager
@@ -167,7 +172,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         {
         //let location=map.userLocation.coordinate
         
-        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake((user!.theSpan * sqrt(2.0)), user!.theSpan * sqrt(2.0)))
+        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake((user!.theSpan * 2 * sqrt(3.0)), user!.theSpan * 2 * sqrt(3.0)))
         
         map.setRegion(newRegion, animated: true)
             
@@ -328,12 +333,64 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
     }
   
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+      
+        var miles=0.0;
+        if(row == 0)
+        {
+            miles = 0.5;
+           
+            
+        }
+        else if(row == 1)
+        {
+          miles=1;
+        }
+        else if(row == 2)
+        {
+             miles=4;
+        }
+        else if(row==3)
+        {
+             miles=10;
+        }
+        else if(row==4)
+        {
+             miles=15;
+        }
+        else if(row==5)
+        {
+             miles=25;
+        }
+        else
+        {
+            miles=50;
+        }
+        user!.theSpan=toSpan(Double(miles));
+        theRadius=milesToMeters(Double(miles));
+        manager.startUpdatingLocation()
+        updateRegion=true;
+        updateEvents();
+        pickerView.hidden=true;
+    }
     
         //Errors for location
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
     }
     
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSource.count;
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return pickerDataSource[row]
+    }
  
     
     func milesToMeters(miles:Double)->Double
