@@ -28,14 +28,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
+      
         user?.defaultLocation.longitude=manager.location.coordinate.longitude
-       user?.defaultLocation.latitude=manager.location.coordinate.latitude
+        user?.defaultLocation.latitude=manager.location.coordinate.latitude
 
         manager.stopUpdatingLocation()
         
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
         
     }
 

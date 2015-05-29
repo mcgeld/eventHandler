@@ -55,7 +55,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         case 1:
             println("list view");
         case 2:
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true, completion: nil);
         default:
             break;
         }
