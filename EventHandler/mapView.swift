@@ -32,7 +32,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     var manager:CLLocationManager!
      var eventPins = [MKPointAnnotation()]
     
-    @IBOutlet var distanceTextBoxOutlet: UITextField!
+  
     
     @IBOutlet var longPress: UILongPressGestureRecognizer!
     
@@ -41,23 +41,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         milePicker.hidden=false;
     }
 
-    @IBOutlet var segmentControl: UISegmentedControl!
-    @IBAction func segmentAction(sender: AnyObject)
-    {
-        switch segmentControl.selectedSegmentIndex
-        {
-        case 0:
-            println("Welcome");
-        case 1:
-            println("list view");
-        case 2:
-            self.dismissViewControllerAnimated(true, completion: nil);
-        default:
-            break;
-        }
-        
-        
-    }
+
 
     
     override func viewDidLoad()
@@ -72,7 +56,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         self.milePicker.delegate = self;
         milePicker.hidden=true;
     
-        milePicker.backgroundColor=UIColor.redColor();
+        milePicker.layer.borderColor = UIColor.blueColor().CGColor
+        milePicker.layer.borderWidth = 5
+        milePicker.backgroundColor=UIColor.lightGrayColor();
      
         
         //default range of view
@@ -171,8 +157,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         if(updateRegion==true)
         {
         //let location=map.userLocation.coordinate
+            var sp=user!.theSpan*2*1.73205080757;
         
-        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake((user!.theSpan * 2 * sqrt(3.0)), user!.theSpan * 2 * sqrt(3.0)))
+            var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(sp, sp));
         
         map.setRegion(newRegion, animated: true)
             
@@ -280,7 +267,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         annotationController.addAction(setNewLocation)
         //Create and add a second option action
         let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
-            //Code for picking from camera roll goes here
+            
+            self.performSegueWithIdentifier("createEvent", sender: nil)
+            
         }
         annotationController.addAction(createNewEvent)
         
@@ -299,15 +288,15 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         self.map.delegate = self
         self.map.removeOverlay(circle);
         
-        circle = MKCircle(centerCoordinate: location.coordinate, radius: (theRadius * sqrt(2.0))  as CLLocationDistance)
+        circle = MKCircle(centerCoordinate: location.coordinate, radius: (theRadius * 1.41421356237)  as CLLocationDistance)
         
         self.map.addOverlay(circle)
     }
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if overlay is MKCircle {
             var circle = MKCircleRenderer(overlay: overlay)
-            circle.strokeColor = UIColor.redColor()
-            circle.fillColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.1)
+            circle.strokeColor = UIColor.blueColor()
+            circle.fillColor = UIColor(red: 0, green: 185, blue: 98, alpha: 0.1)
             circle.lineWidth = 1
             return circle
         } else {
@@ -410,11 +399,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         return span*69;
         
     }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        distanceTextBoxOutlet.resignFirstResponder();
-        return true;
-    }
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
