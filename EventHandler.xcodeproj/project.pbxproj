@@ -20,6 +20,7 @@
 		591F4DD91B1986CF0022B675 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591F4DD81B1986CF0022B675 /* loginView.swift */; };
 		591F4DDB1B1990760022B675 /* profileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591F4DDA1B1990760022B675 /* profileView.swift */; };
 		59ED426C1B069AF500B23B9C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED426B1B069AF500B23B9C /* Database.swift */; };
+		AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0799261B1A20EA001211D3 /* mainTabView.swift */; };
 		ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6D7281AF98C4C00A67045 /* mapView.swift */; };
 		FC92C6851B17DE8800B0B2CE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */; };
 		FCD127111B0D5F4500C366B0 /* EventTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */; };
@@ -61,6 +62,7 @@
 		591F4DD81B1986CF0022B675 /* loginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		591F4DDA1B1990760022B675 /* profileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileView.swift; sourceTree = "<group>"; };
 		59ED426B1B069AF500B23B9C /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		AD0799261B1A20EA001211D3 /* mainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainTabView.swift; path = ../mainTabView.swift; sourceTree = "<group>"; };
 		ADD6D7281AF98C4C00A67045 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableTableViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				FCD44E891AF88C0E00F18D35 /* User.swift */,
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
 				591F4DD81B1986CF0022B675 /* loginView.swift */,
+				AD0799261B1A20EA001211D3 /* mainTabView.swift */,
 				FCD44E6B1AF88AC200F18D35 /* ViewController.swift */,
 				FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */,
 				FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */,
@@ -290,6 +293,7 @@
 				FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */,
 				ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */,
 				591F4DDB1B1990760022B675 /* profileView.swift in Sources */,
+				AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */,
 				591F4DD91B1986CF0022B675 /* loginView.swift in Sources */,
 				FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */,
 				FCD44E941AFC2F1E00F18D35 /* Map.swift in Sources */,

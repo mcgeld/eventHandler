@@ -14,25 +14,14 @@ var user=db.login("caden311", password: "snow311");
 
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
 
     var manager:CLLocationManager!
     
     override func viewDidLoad() {
         
         
-        //Setup our Location Manager
-        manager = CLLocationManager()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestAlwaysAuthorization()
-        manager.startUpdatingLocation()
-        
-      
-        user?.defaultLocation.longitude=manager.location.coordinate.longitude
-        user?.defaultLocation.latitude=manager.location.coordinate.latitude
 
-        manager.stopUpdatingLocation()
         
         
         super.viewDidLoad()
@@ -43,29 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     //Segmented View
-    
-    @IBOutlet var welcomeLabel: UILabel!
-    @IBOutlet var segmentControl: UISegmentedControl!
-    @IBAction func segmentChange(sender: UISegmentedControl)
-    {
-        switch segmentControl.selectedSegmentIndex
-        {
-        case 0:
-            welcomeLabel.text="First Segment Selected";
-            self.performSegueWithIdentifier("mapSegue", sender: nil);
-        case 1:
-            welcomeLabel.text="Second Segment Selecte";
-            
-        case 2:
-            welcomeLabel.text = "Login Segment Selected";
-            self.performSegueWithIdentifier("eventTableSegue", sender: nil);
-        default:
-            break; 
-        }
-        
-        
-    }
-    
+
     
     
     override func didReceiveMemoryWarning() {
