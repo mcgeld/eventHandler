@@ -15,18 +15,20 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
+class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   
    
    // var theSpan=0.045
     var theRadius=804.0
     var updateRegion=true;
-   
-   // var circle=MKCircle()
+    var circleAdded=false;
+    var circle=MKCircle();
+     var pickerDataSource = [".5", "1", "4", "10","15","25","50"];
     
     //outlets
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var map: MKMapView!
+    @IBOutlet var radiusButtonOutlet: UIButton!
     var manager:CLLocationManager!
      var eventPins = [MKPointAnnotation()]
     
@@ -34,17 +36,11 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     @IBOutlet var longPress: UILongPressGestureRecognizer!
     
-    @IBAction func distanceTextBox(sender: AnyObject)
-    {
-        manager.startUpdatingLocation()
-        var miles=(distanceTextBoxOutlet.text);
-        user!.theSpan=toSpan((miles as NSString).doubleValue);
-        theRadius=milesToMeters((miles as NSString).doubleValue);
-        updateRegion=true;
-        updateEvents();
-        
-        
+    @IBOutlet var milePicker: UIPickerView!
+    @IBAction func radiusButtonAction(sender: AnyObject) {
+        milePicker.hidden=false;
     }
+
     @IBOutlet var segmentControl: UISegmentedControl!
     @IBAction func segmentAction(sender: AnyObject)
     {
@@ -69,13 +65,22 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-       
-
-
-  
+        //picker view set up
        
         
-        distanceTextBoxOutlet.delegate=self;
+        self.milePicker.dataSource = self;
+        self.milePicker.delegate = self;
+        milePicker.hidden=true;
+    
+        milePicker.backgroundColor=UIColor.redColor();
+     
+        
+        //default range of view
+        user!.theSpan=toSpan(1);
+        theRadius=milesToMeters(1);
+       
+        
+   
         
         
         //Setup our Location Manager
@@ -140,7 +145,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         var e=db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan));
         for i in e!
         {
-        println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
+       // println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
         var annotation=MKPointAnnotation();
      
         
@@ -151,7 +156,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
       
         map.addAnnotation(annotation)
         
-        println(annotation.title + " " + annotation.subtitle);
+        //println(annotation.title + " " + annotation.subtitle);
        
         
         eventPins.append(annotation);
@@ -161,19 +166,21 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         //updating location function **** GAME LOOP ****
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject])
     {
-       
+        let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
         
         if(updateRegion==true)
         {
         //let location=map.userLocation.coordinate
-         let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
-        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(user!.theSpan, user!.theSpan))
+        
+        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake((user!.theSpan * 2 * sqrt(3.0)), user!.theSpan * 2 * sqrt(3.0)))
         
         map.setRegion(newRegion, animated: true)
             
+            updateEvents();
+            circleAdded=false;
             updateRegion=false;
             
-            println("Latitude \(location.latitude) and longitude: \(location.longitude)")
+            //println("Latitude \(location.latitude) and longitude: \(location.longitude)")
         }
         else
         {
@@ -189,9 +196,12 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         //Adding the circle to our location
         
-        
-               // addRadiusCircle(location1)
-              
+        if(circleAdded==false)
+        {
+            addRadiusCircle(CLLocation(latitude: location.latitude, longitude: location.longitude));
+            circleAdded=true;
+            
+        }
       
         
         
@@ -287,8 +297,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     //**Addwing a circle to the map **//
     func addRadiusCircle(location: CLLocation){
         self.map.delegate = self
-        //self.map.removeOverlay(circle);
-         var circle = MKCircle(centerCoordinate: location.coordinate, radius: theRadius as CLLocationDistance)
+        self.map.removeOverlay(circle);
+        
+        circle = MKCircle(centerCoordinate: location.coordinate, radius: (theRadius * sqrt(2.0))  as CLLocationDistance)
         
         self.map.addOverlay(circle)
     }
@@ -322,17 +333,69 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
     }
   
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+      
+        var miles=0.0;
+        if(row == 0)
+        {
+            miles = 0.5;
+           
+            
+        }
+        else if(row == 1)
+        {
+          miles=1;
+        }
+        else if(row == 2)
+        {
+             miles=4;
+        }
+        else if(row==3)
+        {
+             miles=10;
+        }
+        else if(row==4)
+        {
+             miles=15;
+        }
+        else if(row==5)
+        {
+             miles=25;
+        }
+        else
+        {
+            miles=50;
+        }
+        user!.theSpan=toSpan(Double(miles));
+        theRadius=milesToMeters(Double(miles));
+        manager.startUpdatingLocation()
+        updateRegion=true;
+        updateEvents();
+        pickerView.hidden=true;
+    }
     
         //Errors for location
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
     }
     
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSource.count;
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return pickerDataSource[row]
+    }
  
     
     func milesToMeters(miles:Double)->Double
     {
-        return miles/0.00062137;
+        return (miles/0.000621371195);
         
     }
     //conver to span of map
