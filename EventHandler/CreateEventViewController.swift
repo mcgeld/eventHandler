@@ -23,16 +23,6 @@ class CreateEventViewController: UIViewController {
     
     @IBOutlet weak var privateSwitch: UISwitch!
     
-    /*
-    var eventTitle : String?
-    var eventDescription : String?
-    var date : DateTime?
-    var startTime : String?
-    var duration : Int?
-    var maxAttendance : Int?
-    var privateEvent : Bool?
-*/
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +30,6 @@ class CreateEventViewController: UIViewController {
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
     
-    
-   
     }
     
     //Calls this function when the tap is recognized.
