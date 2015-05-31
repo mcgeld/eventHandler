@@ -11,7 +11,7 @@ import UIKit
 class EventTableTableViewController: UITableViewController, UITableViewDataSource {
 
     
-    var events : [Event]?
+    //var events : [Event]?
     
    
     
@@ -24,12 +24,12 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        var location = user!.defaultLocation
-        events = db.getEventsByLocation(user!.id, location: location, range: 50)
+        //var location = user!.defaultLocation
+        //events = db.getEventsByLocation(user!.id, location: location, range: 50)
         
         println("Table View")
         
-        for e in events!
+        for e in events
         {
             println(e.title)
         }
@@ -51,7 +51,7 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.events!.count
+        return events.count
     }
 
     
@@ -60,7 +60,7 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
 
         // Configure the cell...
         let i = indexPath.row
-        cell.textLabel!.text = events![indexPath.row].title
+        cell.textLabel!.text = events[indexPath.row].title
 
         return cell
     }
@@ -112,7 +112,7 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
         {
             let detailViewController = segue.destinationViewController as! EventDetailViewController
             let indexPath = self.tableView.indexPathForSelectedRow()!
-            let eventObj = events![indexPath.row]
+            let eventObj = events[indexPath.row]
             detailViewController.curEvent = eventObj
         }
     }

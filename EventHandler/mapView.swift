@@ -15,6 +15,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+var events = [Event]()
+
 class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   
    
@@ -128,8 +130,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         var location=user!.defaultLocation;
         
-        var e=db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan));
-        for i in e!
+        events = db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan))!;
+        for i in events
         {
        // println("event latitude: \(i.location.latitude) and longitude \(i.location.longitude)");
         var annotation=MKPointAnnotation();
