@@ -42,6 +42,7 @@ class Database {
     func login(username : String, password : String) -> User?
     {
         dbErr = 0;
+        println(username + " " + password)
         let result : NSDictionary = getWebResults(self.ip + "login.php?username=" + username + "&password=" + password)
         dbMessage = result["message"] as! String
         if(result["response"] as! String == "success")

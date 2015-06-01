@@ -11,7 +11,7 @@ import UIKit
 class EventTableTableViewController: UITableViewController, UITableViewDataSource {
 
     
-    //var events : [Event]?
+    var events : [Event]?
     
    
     
@@ -28,11 +28,13 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
         //events = db.getEventsByLocation(user!.id, location: location, range: 50)
         
         println("Table View")
-        
-        for e in events
-        {
-            println(e.title)
-        }
+      
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        var location = user!.defaultLocation
+        events = db.getEventsByLocation(user!.id, location: location, range: 50)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +53,7 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return events.count
+        return events!.count
     }
 
     
@@ -60,7 +62,7 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
 
         // Configure the cell...
         let i = indexPath.row
-        cell.textLabel!.text = events[indexPath.row].title
+        cell.textLabel!.text = events![indexPath.row].title
 
         return cell
     }
@@ -112,7 +114,7 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
         {
             let detailViewController = segue.destinationViewController as! EventDetailViewController
             let indexPath = self.tableView.indexPathForSelectedRow()!
-            let eventObj = events[indexPath.row]
+            let eventObj = events![indexPath.row]
             detailViewController.curEvent = eventObj
         }
     }
