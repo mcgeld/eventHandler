@@ -8,8 +8,8 @@
 
 import UIKit
 import CoreLocation
-//var db = Database(_ip: "vientapps.com/eventHandler")
-var db = Database(_ip: "192.168.0.29/eventHandler")
+var db = Database(_ip: "vientapps.com/eventHandler")
+//var db = Database(_ip: "192.168.0.29/eventHandler")
 var user=db.login("caden311", password: "snow311");
 
 
