@@ -28,6 +28,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
      var pickerDataSource = [".5", "1", "4", "10","15","25","50"];
     
     //outlets
+
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var map: MKMapView!
     @IBOutlet var radiusButtonOutlet: UIButton!
@@ -39,9 +40,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     @IBOutlet var longPress: UILongPressGestureRecognizer!
     
     @IBOutlet var milePicker: UIPickerView!
-    @IBAction func radiusButtonAction(sender: AnyObject) {
-        milePicker.hidden=false;
-    }
+
 
 
 
@@ -97,21 +96,73 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         // var user=User(_id : 66, _firstName : "Caden", _lastName : "Sorenson", _username : "caden311", _phoneNumber : 4358811555, _rating : 9, _defaultLocation : Location)
                 
     }
-    
+    @IBAction func radiusButtonAction(sender: AnyObject) {
+        milePicker.hidden=false;
+    }
+    @IBAction func homeButton(sender: AnyObject)
+    {
+        let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
+        
+        //let location=map.userLocation.coordinate
+        var sp=user!.theSpan*2*1.73205080757;
+        
+        var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(sp, sp));
+        
+        map.setRegion(newRegion, animated: true)
+        
+        updateEvents();
+        circleAdded=false;
+        updateRegion=false;
+        
+    }
     
     func action(gestureRecognizer:UIGestureRecognizer)
     {
 
         if(gestureRecognizer.state==UIGestureRecognizerState.Began)
         {
+            
+            
         var touchPoint = gestureRecognizer.locationInView(self.map)
         var newCoord:CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
         
-        var newAnotation = MKPointAnnotation()
-        newAnotation.coordinate = newCoord
-        newAnotation.title = "New Location"
-        newAnotation.subtitle = "New Subtitle"
-        map.addAnnotation(newAnotation)
+            //Create the AlertController
+            let annotationController: UIAlertController = UIAlertController(title: "New Location", message: "Swiftly Now! Choose an option!", preferredStyle: .ActionSheet)
+            
+            //Create and add the Cancel action
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+                //Just dismiss the action sheet
+            }
+            annotationController.addAction(cancelAction)
+            //Create and add first option action
+            let setNewLocation: UIAlertAction = UIAlertAction(title: "Set As New Location", style: .Default) { action -> Void in
+                user!.defaultLocation.latitude=newCoord.latitude;
+                user!.defaultLocation.longitude=newCoord.longitude;
+                self.manager.startUpdatingLocation()
+                self.updateRegion=true;
+                
+            }
+            annotationController.addAction(setNewLocation)
+            //Create and add a second option action
+            let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
+                var newAnotation = MKPointAnnotation()
+                newAnotation.coordinate = newCoord
+                newAnotation.title = "New Location"
+                newAnotation.subtitle = "New Subtitle"
+                self.map.addAnnotation(newAnotation)
+                self.performSegueWithIdentifier("createEvent", sender: nil)
+                
+            }
+            annotationController.addAction(createNewEvent)
+            
+            //We need to provide a popover sourceView when using it on iPad
+            //actionSheetController.popoverPresentationController?.sourceView = sender as UIView;
+            
+            //Present the AlertController
+            self.presentViewController(annotationController, animated: true, completion: nil)
+            
+            
+      
         }
         
     }
@@ -220,7 +271,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
     {
-        var eventSelected=false;
+       
         var selected:MKPointAnnotation!;
         if(mapView.selectedAnnotations.count>0)
         {
@@ -240,47 +291,17 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             {
                 if contains(eventPins,s)
                 {
-                    eventSelected=true;
-                    println("Go to event page");
+                 
+                    var index=find(eventPins, s);
+                    index = index! - 1;
+                    self.performSegueWithIdentifier("detailSegue2", sender: events[index!])
             
                 }
             }
         
         
      }
-        if(eventSelected==false)
-        {
-        //Create the AlertController
-        let annotationController: UIAlertController = UIAlertController(title: "New Location", message: "Swiftly Now! Choose an option!", preferredStyle: .ActionSheet)
-        
-        //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-            //Just dismiss the action sheet
-        }
-        annotationController.addAction(cancelAction)
-        //Create and add first option action
-        let setNewLocation: UIAlertAction = UIAlertAction(title: "Set As New Location", style: .Default) { action -> Void in
-            user!.defaultLocation.latitude=view.annotation.coordinate.latitude
-            user!.defaultLocation.longitude=view.annotation.coordinate.longitude
-            self.manager.startUpdatingLocation()
-            self.updateRegion=true;
-            
-        }
-        annotationController.addAction(setNewLocation)
-        //Create and add a second option action
-        let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
-            
-            self.performSegueWithIdentifier("createEvent", sender: nil)
-            
-        }
-        annotationController.addAction(createNewEvent)
-        
-        //We need to provide a popover sourceView when using it on iPad
-        //actionSheetController.popoverPresentationController?.sourceView = sender as UIView;
-        
-        //Present the AlertController
-        self.presentViewController(annotationController, animated: true, completion: nil)
-        }
+    
         
     }
     
@@ -405,6 +426,18 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "detailSegue2"
+        {
+            let detailViewController = segue.destinationViewController as! EventDetailViewController
+           
+            let eventObj = sender as! Event;
+            detailViewController.curEvent = eventObj
+        }
     }
     
 }
