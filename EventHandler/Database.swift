@@ -16,7 +16,8 @@ class Database {
     // 2 : Connection error
     var dbErr : Int = 0
     var dbMessage : String = ""
-    
+    var branchTest : String = ""
+
     init(_ip : String)
     {
          self.ip = "http://" + _ip + "/"
