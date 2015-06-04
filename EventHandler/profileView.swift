@@ -22,7 +22,6 @@ class profileView : UIViewController {
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var defaultLocationLabel: UILabel!
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
@@ -32,8 +31,6 @@ class profileView : UIViewController {
         lastNameLabel.text = user?.lastName
         userNameLabel.text = user?.username
         phoneNumberLabel.text = String(user!.phoneNumber)
-        ratingLabel.text = String(format: "%.2f", user!.rating)
-        defaultLocationLabel.text = String(format: "%.2f", user!.defaultLocation.latitude) + "," + String(format: "%.2f", user!.defaultLocation.longitude)
     }
     
     @IBAction func editButtonPressed(sender: UIButton) {
