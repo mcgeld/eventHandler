@@ -22,6 +22,7 @@ class Database {
          self.ip = "http://" + _ip + "/"
     }
     
+    
     private func getWebResults(url : String) -> NSDictionary
     {
         var request = NSMutableURLRequest(URL: NSURL(string: url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 5)

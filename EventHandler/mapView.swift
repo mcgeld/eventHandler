@@ -87,7 +87,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         map.showsUserLocation = true
         
         let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
-        longPress.minimumPressDuration = 2.0
+        longPress.minimumPressDuration = 1.2
         map.addGestureRecognizer(longPress)
         
         updateEvents();
@@ -124,6 +124,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             
             
         var touchPoint = gestureRecognizer.locationInView(self.map)
+            touchPoint.y -= 10;
         var newCoord:CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
         
             //Create the AlertController
@@ -150,7 +151,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
                 newAnotation.title = "New Location"
                 newAnotation.subtitle = "New Subtitle"
                 self.map.addAnnotation(newAnotation)
-                self.performSegueWithIdentifier("createEvent", sender: nil)
+              //  self.performSegueWithIdentifier("createEvent", sender: nil)
                 
             }
             annotationController.addAction(createNewEvent)
@@ -167,7 +168,6 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
     }
    
-
     
     func updateEvents()
     {
@@ -195,7 +195,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
       
         map.addAnnotation(annotation)
         
-        //println(annotation.title + " " + annotation.subtitle);
+       // println(annotation.title + " " + annotation.subtitle);
        
         
         eventPins.append(annotation);
@@ -301,6 +301,13 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
      }
+    else
+    {
+        
+        
+    }
+        
+        
     
         
     }
@@ -336,6 +343,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             locationLabel.text="";
             var text="";
            // text+="\(placemark.subLocality) "
+          
             text+="\(placemark.locality)"
             text+=" \(placemark.administrativeArea ),"
             text+=" \(placemark.postalCode ) "
@@ -434,9 +442,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         if segue.identifier == "detailSegue2"
         {
             let detailViewController = segue.destinationViewController as! EventDetailViewController
-           
+            
             let eventObj = sender as! Event;
-            detailViewController.curEvent = eventObj
+            println("this is added");
+            detailViewController.curEvent = eventObj;
         }
     }
     
