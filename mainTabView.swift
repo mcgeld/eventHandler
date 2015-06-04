@@ -25,8 +25,8 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
-        globalLocation.longitude=manager.location.coordinate.longitude;
-        globalLocation.latitude=manager.location.coordinate.latitude;
+        //globalLocation.longitude=manager.location.coordinate.longitude;
+        //globalLocation.latitude=manager.location.coordinate.latitude;
         
         
         manager.stopUpdatingLocation()

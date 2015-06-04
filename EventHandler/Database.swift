@@ -37,9 +37,10 @@ class Database {
             request.HTTPMethod = "GET"
         
             let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
-            var parseError: NSError?
-            if let responseObject = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &parseError) as? NSDictionary
+            if data != nil
             {
+                var parseError: NSError?
+                let responseObject = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &parseError) as? NSDictionary
                 return responseObject
             }
         }
@@ -60,9 +61,8 @@ class Database {
                 let firstName = innerResult![0]["firstName"] as! String
                 let lastName = innerResult![0]["lastName"] as! String
                 let phoneNumber = (innerResult![0]["phone"] as! String).toInt()!
-                let rating = (innerResult![0]["rating"] as! NSString).doubleValue
             
-                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber, _rating: rating)
+                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber)
             
                 return temp
             }
