@@ -16,6 +16,7 @@ import MapKit
 import CoreLocation
 
 var events = [Event]()
+var globalLocation = Location(lat: 0, lon: 0)
 
 class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   
@@ -101,7 +102,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     }
     @IBAction func homeButton(sender: AnyObject)
     {
-        let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
+        let location=CLLocationCoordinate2D(latitude: globalLocation.latitude, longitude: globalLocation.longitude);
         
         //let location=map.userLocation.coordinate
         var sp=user!.theSpan*2*1.73205080757;
@@ -137,8 +138,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             annotationController.addAction(cancelAction)
             //Create and add first option action
             let setNewLocation: UIAlertAction = UIAlertAction(title: "Set As New Location", style: .Default) { action -> Void in
-                user!.defaultLocation.latitude=newCoord.latitude;
-                user!.defaultLocation.longitude=newCoord.longitude;
+                globalLocation.latitude=newCoord.latitude;
+                globalLocation.longitude=newCoord.longitude;
                 self.manager.startUpdatingLocation()
                 self.updateRegion=true;
                 
@@ -179,7 +180,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         //var location = Location(lat: map.userLocation.coordinate.latitude, lon: map.userLocation.coordinate.longitude)
         
         
-        var location=user!.defaultLocation;
+        var location = globalLocation;
         
         events = db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan))!;
         for i in events
@@ -205,7 +206,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         //updating location function **** GAME LOOP ****
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject])
     {
-        let location=CLLocationCoordinate2D(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude);
+        let location=CLLocationCoordinate2D(latitude: globalLocation.latitude, longitude: globalLocation.longitude);
         
         if(updateRegion==true)
         {
@@ -246,7 +247,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
         //Coverting CLlocation to readable address
-        let location1=CLLocation(latitude: user!.defaultLocation.latitude, longitude: user!.defaultLocation.longitude)
+        let location1=CLLocation(latitude: globalLocation.latitude, longitude: globalLocation.longitude)
         CLGeocoder().reverseGeocodeLocation(location1, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
