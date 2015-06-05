@@ -88,7 +88,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         map.showsUserLocation = true
         
         let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
-        longPress.minimumPressDuration = 1.2
+        longPress.minimumPressDuration = 1.0
         map.addGestureRecognizer(longPress)
         
         updateEvents();
@@ -102,8 +102,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     }
     @IBAction func homeButton(sender: AnyObject)
     {
-        let location=CLLocationCoordinate2D(latitude: globalLocation.latitude, longitude: globalLocation.longitude);
-        
+        let location=CLLocationCoordinate2D(latitude: manager.location.coordinate.latitude, longitude: manager.location.coordinate.longitude);
+        globalLocation.latitude=location.latitude;
+        globalLocation.longitude=location.longitude;
         //let location=map.userLocation.coordinate
         var sp=user!.theSpan*2*1.73205080757;
         
@@ -112,8 +113,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         map.setRegion(newRegion, animated: true)
         
         updateEvents();
-        circleAdded=false;
-        updateRegion=false;
+        updateRegion=true;
+        manager.startUpdatingLocation();
         
     }
     
@@ -152,7 +153,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
                 newAnotation.title = "New Location"
                 newAnotation.subtitle = "New Subtitle"
                 self.map.addAnnotation(newAnotation)
-              //  self.performSegueWithIdentifier("createEvent", sender: nil)
+                self.performSegueWithIdentifier("createEvent", sender: nil)
                 
             }
             annotationController.addAction(createNewEvent)
@@ -269,24 +270,97 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     }
     
-    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!)
+    {
+          var selected:MKPointAnnotation!;
+        
+        if(mapView.selectedAnnotations.count>0)
+        {
+            
+            if(mapView.selectedAnnotations[0] is MKUserLocation)
+            {
+                println("Hello");
+            }
+            else if(eventPins.count>0)
+            {
+                selected=mapView.selectedAnnotations[0] as! MKPointAnnotation;
+            
+                if var s=selected
+                {
+                    if contains(eventPins,s)
+                    {
+                    
+                        var index=find(eventPins, s);
+                        index = index! - 1;
+                        self.performSegueWithIdentifier("detailSegue2", sender: events[index!])
+                    
+                    }
+                }
+            
+            
+            }
+        }
+     
+    }
+
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+            if(annotation is MKUserLocation)
+            {
+                return nil;
+            }
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+                as? MKPinAnnotationView {
+                    dequeuedView.annotation = annotation
+                    view = dequeuedView
+            } else {
+                // 3
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIView
+            }
+            return view
+      
+    }
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!)
     {
-       
-        var selected:MKPointAnnotation!;
+        
+         var selected:MKPointAnnotation!;
+        
+    
         if(mapView.selectedAnnotations.count>0)
         {
             if(mapView.selectedAnnotations[0] is MKUserLocation)
             {
+                let annotationController: UIAlertController = UIAlertController(title: "New Location", message: "Swiftly Now! Choose an option!", preferredStyle: .ActionSheet)
                 
+                //Create and add the Cancel action
+                let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+                    //Just dismiss the action sheet
+                }
+                annotationController.addAction(cancelAction)
+                
+                //Create and add a second option action
+                let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
+                    
+                    self.performSegueWithIdentifier("createEvent", sender: nil)
+                    
+                }
+                annotationController.addAction(createNewEvent)
+                
+                
+                //Present the AlertController
+                self.presentViewController(annotationController, animated: true, completion: nil)
             }
             else
             {
                 selected=mapView.selectedAnnotations[0] as! MKPointAnnotation;
             }
         }
-    if(eventPins.count>0)
-    {
+ /*       if(eventPins.count>0)
+        {
        
             if var s=selected
             {
@@ -301,13 +375,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             }
         
         
-     }
-    else
-    {
-        
-        
-    }
-        
+        }
+ 
+        */
         
     
         
@@ -344,7 +414,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             locationLabel.text="";
             var text="";
            // text+="\(placemark.subLocality) "
-          
+            text+="\(placemark.subThoroughfare) "
+            text+="\(placemark.thoroughfare) "
             text+="\(placemark.locality)"
             text+=" \(placemark.administrativeArea ),"
             text+=" \(placemark.postalCode ) "
@@ -445,7 +516,6 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             let detailViewController = segue.destinationViewController as! EventDetailViewController
             
             let eventObj = sender as! Event;
-            println("this is added");
             detailViewController.curEvent = eventObj;
         }
     }

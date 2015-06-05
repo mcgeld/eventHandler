@@ -23,8 +23,7 @@ class Database {
          self.ip = "http://" + _ip + "/"
     }
     
-    
-    private func getWebResults(url : String) -> NSDictionary
+    private func getWebResults(url : String) -> NSDictionary?
     {
         var returnVal : AnyObject?
         for(var i = 0, done = false; !done || i < 5; i++)
