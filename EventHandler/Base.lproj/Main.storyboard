@@ -117,7 +117,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Gkn-yg-XIV" kind="relationship" relationship="viewControllers" id="UrD-BF-o8t"/>
+                        <segue destination="m1x-dS-xwC" kind="relationship" relationship="viewControllers" id="UrD-BF-o8t"/>
                         <segue destination="NhP-f7-xiF" kind="relationship" relationship="viewControllers" id="obd-i5-4HU"/>
                         <segue destination="OzY-Jx-umO" kind="relationship" relationship="viewControllers" id="dU2-zV-bk0"/>
                     </connections>
@@ -275,7 +275,7 @@
             </objects>
             <point key="canvasLocation" x="1550" y="-472"/>
         </scene>
-        <!--Map-->
+        <!--Map View-->
         <scene sceneID="pFG-Ty-WzZ">
             <objects>
                 <viewController id="Gkn-yg-XIV" customClass="mapView" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
@@ -287,7 +287,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
                                 <rect key="frame" x="0.0" y="113" width="600" height="487"/>
                                 <gestureRecognizers/>
                             </mapView>
@@ -297,7 +297,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEd-iF-2zX">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEd-iF-2zX">
                                 <rect key="frame" x="16" y="75" width="48" height="30"/>
                                 <state key="normal" title="Radius">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -306,7 +306,7 @@
                                     <action selector="radiusButtonAction:" destination="Gkn-yg-XIV" eventType="touchUpInside" id="kJe-8r-0io"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDz-ov-cIK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=".." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDz-ov-cIK">
                                 <rect key="frame" x="0.0" y="28" width="600" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -317,7 +317,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nbo-hK-bgc">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nbo-hK-bgc">
                                 <rect key="frame" x="543" y="113" width="41" height="30"/>
                                 <state key="normal" title="Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -348,7 +348,7 @@
                             <constraint firstItem="3fE-Ez-q6O" firstAttribute="top" secondItem="cDz-ov-cIK" secondAttribute="bottom" constant="29" id="yck-YU-2NL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="mapButton.png" id="8Iv-V0-zp6"/>
+                    <navigationItem key="navigationItem" id="aVt-au-MwA"/>
                     <connections>
                         <outlet property="locationLabel" destination="cDz-ov-cIK" id="8dR-S9-Yao"/>
                         <outlet property="map" destination="3fE-Ez-q6O" id="Hg5-De-AvW"/>
@@ -360,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvc-pf-RxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="263"/>
+            <point key="canvasLocation" x="2651" y="257"/>
         </scene>
         <!--CreateEventViewController-->
         <scene sceneID="TCd-sj-N7y">
@@ -544,7 +544,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrx-O8-rTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2304" y="240"/>
+            <point key="canvasLocation" x="3374" y="234"/>
         </scene>
         <!--List-->
         <scene sceneID="98S-Pj-dfZ">
@@ -707,7 +707,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UI-dO-e3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="987"/>
+            <point key="canvasLocation" x="2726" y="1113"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="ecA-80-by7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m1x-dS-xwC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="mapButton.png" id="8Iv-V0-zp6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IqR-fI-eeg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gkn-yg-XIV" kind="relationship" relationship="rootViewController" id="mec-Ls-3PX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ycl-9g-ej2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="257"/>
         </scene>
     </scenes>
     <resources>
