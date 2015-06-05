@@ -27,6 +27,6 @@ class DateTime {
     
     func toString() -> String
     {
-        return String(year) + ":" + String(month) + ":" + String(day) + ":" + String(hour) + ":" + String(minute)
+        return String(year) + ":" + String(format: "%2d", month) + ":" + String(format: "%2d", day) + ":" + String(format: "%2d", hour) + ":" + String(format: "%2d", minute)
     }
 }

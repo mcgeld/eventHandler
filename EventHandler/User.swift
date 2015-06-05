@@ -15,27 +15,15 @@ class User
     var lastName : String
     var username : String
     var phoneNumber : Int
-    var rating : Double
     var theSpan:Double //The length in degrees the user wants to display local events
     
-    init(_id : Int, _firstName : String, _lastName : String, _username : String, _phoneNumber : Int, _rating : Double)
+    init(_id : Int, _firstName : String, _lastName : String, _username : String, _phoneNumber : Int)
     {
         self.id = _id
         self.firstName = _firstName
         self.lastName = _lastName
         self.username = _username
         self.phoneNumber = _phoneNumber
-        self.rating = _rating
         self.theSpan=0.045
     }
-    
-    /*func addEvent(e: Event)
-    {
-        createdEvents.append(e)
-    }
-    
-    func addToInvitedList(e: Event)
-    {
-        invitedEvents.append(e)
-    }*/
 }
