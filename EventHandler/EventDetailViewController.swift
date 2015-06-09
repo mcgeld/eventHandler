@@ -31,7 +31,7 @@ class EventDetailViewController: UIViewController {
         titleLabel.text = curEvent?.title
         descriptionLabel.text = curEvent?.description
         locLabel.text = "House..."
-        dateLabel.text = curEvent?.date.toString()
+        dateLabel.text = curEvent?.date!.toString()
         maxAttLabel.text = toString(curEvent?.maxAttendance)
         
         timeLabel.text = "This is the time"

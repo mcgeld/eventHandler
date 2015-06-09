@@ -24,6 +24,8 @@
 		ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6D7281AF98C4C00A67045 /* mapView.swift */; };
 		FC64B4ED1B1A711C003135AD /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */; };
 		FC92C6851B17DE8800B0B2CE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */; };
+		FCC0DA521B210F900084C1FA /* createEventDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */; };
+		FCC0DA541B251D840084C1FA /* createEventLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0DA531B251D840084C1FA /* createEventLocationView.swift */; };
 		FCD127111B0D5F4500C366B0 /* EventTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */; };
 		FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E691AF88AC200F18D35 /* AppDelegate.swift */; };
 		FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD44E6B1AF88AC200F18D35 /* ViewController.swift */; };
@@ -67,6 +69,8 @@
 		ADD6D7281AF98C4C00A67045 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createEventDateView.swift; sourceTree = "<group>"; };
+		FCC0DA531B251D840084C1FA /* createEventLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createEventLocationView.swift; sourceTree = "<group>"; };
 		FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableTableViewController.swift; sourceTree = "<group>"; };
 		FCD44E641AF88AC200F18D35 /* EventHandler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventHandler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD44E681AF88AC200F18D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				AD0799261B1A20EA001211D3 /* mainTabView.swift */,
 				FCD44E6B1AF88AC200F18D35 /* ViewController.swift */,
 				FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */,
+				FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */,
+				FCC0DA531B251D840084C1FA /* createEventLocationView.swift */,
 				FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */,
 				FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */,
 				591F4DDA1B1990760022B675 /* profileView.swift */,
@@ -297,6 +303,7 @@
 				FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */,
 				ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */,
 				591F4DDB1B1990760022B675 /* profileView.swift in Sources */,
+				FCC0DA541B251D840084C1FA /* createEventLocationView.swift in Sources */,
 				AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */,
 				591F4DD91B1986CF0022B675 /* loginView.swift in Sources */,
 				FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */,
@@ -305,6 +312,7 @@
 				FCD44E921AF8964400F18D35 /* Event.swift in Sources */,
 				FC92C6851B17DE8800B0B2CE /* CreateEventViewController.swift in Sources */,
 				FCD44E8A1AF88C0E00F18D35 /* User.swift in Sources */,
+				FCC0DA521B210F900084C1FA /* createEventDateView.swift in Sources */,
 				FCD44E981AFC901400F18D35 /* Comment.swift in Sources */,
 				59ED426C1B069AF500B23B9C /* Database.swift in Sources */,
 				FCD44E961AFC8E0E00F18D35 /* Forum.swift in Sources */,

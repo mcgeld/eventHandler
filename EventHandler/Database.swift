@@ -49,10 +49,8 @@ class Database {
     func login(username : String, password : String) -> User?
     {
         dbErr = 0;
-        
-        let result : NSDictionary = getWebResults(self.ip + "login.php?username=" + username + "&password=" + password)
-        dbMessage = result["message"] as! String
-        if(result["response"] as! String == "success")
+        println(username + " " + password)
+        if let result : NSDictionary = getWebResults(self.ip + "login.php?username=" + username + "&password=" + password)
         {
             dbMessage = result["message"] as! String
             if(result["response"] as! String == "success")
@@ -111,7 +109,7 @@ class Database {
                     let minRating = (innerResult![i]["minRating"] as! NSString).doubleValue
                     let daysFromToday = (innerResult![i]["daysFromToday"] as! String).toInt()!
                 
-                    returnList.append(Event(_id: id, _title: title, _description: description, _date: date, _duration: duration, _location: location, _private: privateEvent, _maxAttendance: maxAttendance, _minRating: minRating, _daysFromToday: daysFromToday))
+                    returnList.append(Event(_id: id, _title: title, _description: description, _date: date, _duration: duration, _location: location, _public: privateEvent, _maxAttendance: maxAttendance, _minRating: minRating, _daysFromToday: daysFromToday))
                 }
                 return returnList
             }
@@ -147,7 +145,7 @@ class Database {
                 let id = (innerResult![0]["id"] as! String).toInt()!
                 let daysFromToday = (innerResult![0]["daysFromToday"] as! String).toInt()!
             
-                return Event(_id: id, _title: _title, _description: _description, _date: _date, _duration: _duration, _location: _location, _private: _private, _maxAttendance: _maxAttendance, _minRating: _minRating, _daysFromToday: daysFromToday)
+                return Event(_id: id, _title: _title, _description: _description, _date: _date, _duration: _duration, _location: _location, _public: _private, _maxAttendance: _maxAttendance, _minRating: _minRating, _daysFromToday: daysFromToday)
             }
             else if(result["response"] as! String == "failure")
             {

@@ -189,7 +189,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         var annotation=MKPointAnnotation();
      
         
-        annotation.coordinate = CLLocationCoordinate2D(latitude: i.location.latitude, longitude: i.location.longitude);
+        annotation.coordinate = CLLocationCoordinate2D(latitude: i.location!.latitude, longitude: i.location!.longitude);
         
         annotation.title = i.title;
         annotation.subtitle = i.description

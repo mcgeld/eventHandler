@@ -9,26 +9,30 @@
 import UIKit
 
 class CreateEventViewController: UIViewController {
+    
+    
+    var newEvent: Event?
 
     @IBOutlet weak var titleTF: UITextField!
-    @IBOutlet weak var descriptionTF: UITextField!
     
-    @IBOutlet weak var dateTF: UITextField!
-    
-    @IBOutlet weak var startTimeTF: UITextField!
-    
-    @IBOutlet weak var durationTF: UITextField!
+    @IBOutlet weak var descriptionTV: UITextView!
     
     @IBOutlet weak var maxAttendanceTF: UITextField!
     
-    @IBOutlet weak var privateSwitch: UISwitch!
+    @IBOutlet weak var isPublicSwitch: UISwitch!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var isPublic = true
+        
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        descriptionTV.layer.borderColor = UIColor.lightGrayColor().CGColor
+        descriptionTV.layer.borderWidth = 1
+        descriptionTV.layer.cornerRadius = 5
     
     }
     
@@ -43,7 +47,34 @@ class CreateEventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func nextButton(sender: AnyObject) {
+        
+        let eventTitle = titleTF.text
+        let eventDescription = descriptionTV.text
+        let maxAttendance = maxAttendanceTF.text.toInt()!
+        var isPublic = isPublicSwitch.enabled
+        //let loc = Location(lat: 41, lon: 111)
+        
+        let userID = user!.id
+      
+       // newEvent = Event(userID, eventTitle, eventDescription, nil, nil, nil, isPublic, maxAttendance, 0, nil)
+        newEvent = Event()
+        newEvent!.userID = userID
+        
+        newEvent!.title = eventTitle
+        
+        newEvent!.description = eventDescription
+        newEvent!.maxAttendance = maxAttendance
+        newEvent!.isPublic = isPublic
 
+        
+        self.performSegueWithIdentifier("eventDateSegue", sender: newEvent)
+        
+    }
+    
+
+
+/*
     @IBAction func createEvent(sender: AnyObject) {
         
         
@@ -72,19 +103,25 @@ class CreateEventViewController: UIViewController {
         
         println("Valid event")
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+       // self.dismissViewControllerAnimated(true, completion: nil)
         
     }
+    */
     
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "eventDateSegue"
+        {
+            let vc = segue.destinationViewController as! createEventDateView
+            vc.event = newEvent
+        }
+        
     }
-    */
+    
 
 }
