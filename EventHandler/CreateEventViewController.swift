@@ -12,6 +12,7 @@ class CreateEventViewController: UIViewController {
     
     
     var newEvent: Event?
+    var pinLoc : Location?
 
     @IBOutlet weak var titleTF: UITextField!
     
@@ -33,6 +34,8 @@ class CreateEventViewController: UIViewController {
         descriptionTV.layer.borderColor = UIColor.lightGrayColor().CGColor
         descriptionTV.layer.borderWidth = 1
         descriptionTV.layer.cornerRadius = 5
+        
+        
     
     }
     
@@ -66,6 +69,11 @@ class CreateEventViewController: UIViewController {
         newEvent!.description = eventDescription
         newEvent!.maxAttendance = maxAttendance
         newEvent!.isPublic = isPublic
+        
+        if pinLoc != nil
+        {
+            newEvent!.location = Location(lat: pinLoc!.latitude, lon: pinLoc!.longitude)
+        }
 
         
         self.performSegueWithIdentifier("eventDateSegue", sender: newEvent)

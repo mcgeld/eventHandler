@@ -151,7 +151,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
                 newAnotation.title = "New Location"
                 newAnotation.subtitle = "New Subtitle"
                 self.map.addAnnotation(newAnotation)
-                self.performSegueWithIdentifier("createEvent", sender: nil)
+                var eventLoc = Location(lat: newCoord.latitude, lon: newCoord.longitude)
+                self.performSegueWithIdentifier("createEvent", sender: eventLoc)
                 
             }
             annotationController.addAction(createNewEvent)
@@ -438,6 +439,12 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
            
             let eventObj = sender as! Event;
             detailViewController.curEvent = eventObj
+        }
+        else if segue.identifier == "createEvent"
+        {
+            let vc = segue.destinationViewController as! CreateEventViewController
+            let pinLoc = sender as! Location
+            vc.pinLoc = pinLoc
         }
     }
     

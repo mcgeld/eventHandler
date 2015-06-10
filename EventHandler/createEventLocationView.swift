@@ -97,11 +97,10 @@ class createEventLocationView: UIViewController {
         
         if(useCurLocation.enabled == true)
         {
-            event!.location = Location(lat: globalLocation.latitude, lon: globalLocation.longitude)
+            //event!.location = Location(lat: globalLocation.latitude, lon: globalLocation.longitude)
             //event!.location?.latitude = globalLocation.latitude
             //event!.location?.longitude = globalLocation.longitude
-           // println(globalLocation.latitude)
-            //println(globalLocation.longitude)
+           
         }
         else
         {
@@ -116,8 +115,6 @@ class createEventLocationView: UIViewController {
         var desc = event!.description!
         var date = event!.date!
         var duration = event!.duration!
-        println(event!.location!.latitude)
-        println(event!.location!.longitude)
         var lon = event!.location!
         
         var isPublic = event!.isPublic!
