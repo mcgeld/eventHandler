@@ -819,7 +819,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UI-dO-e3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="987"/>
+            <point key="canvasLocation" x="2726" y="1113"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="ecA-80-by7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m1x-dS-xwC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="mapButton.png" id="8Iv-V0-zp6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IqR-fI-eeg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gkn-yg-XIV" kind="relationship" relationship="rootViewController" id="mec-Ls-3PX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ycl-9g-ej2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="257"/>
         </scene>
         <!--Map-->
         <scene sceneID="Kwd-bM-atQ">
