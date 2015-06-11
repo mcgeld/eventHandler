@@ -36,7 +36,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     var manager:CLLocationManager!
      var eventPins = [MKPointAnnotation()]
     
-  
+    var timer=NSTimer();
     
     @IBOutlet var longPress: UILongPressGestureRecognizer!
     
@@ -69,14 +69,21 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
        
         
    
-        
-        
+        if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+        {
+            
         //Setup our Location Manager
         manager = CLLocationManager()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
+        
+        }
+        else
+        {
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        }
+     
         
         
         
@@ -93,16 +100,27 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         updateEvents();
         
-       // var user:User;
-        // var user=User(_id : 66, _firstName : "Caden", _lastName : "Sorenson", _username : "caden311", _phoneNumber : 4358811555, _rating : 9, _defaultLocation : Location)
-                
+        
+       
+       
     }
     @IBAction func radiusButtonAction(sender: AnyObject) {
         milePicker.hidden=false;
     }
     @IBAction func homeButton(sender: AnyObject)
     {
-        let location=CLLocationCoordinate2D(latitude: manager.location.coordinate.latitude, longitude: manager.location.coordinate.longitude);
+        var location = CLLocationCoordinate2D();
+        
+        if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+        {
+            
+            location=CLLocationCoordinate2D(latitude: manager.location.coordinate.latitude, longitude: manager.location.coordinate.longitude);
+        }
+        else
+        {
+              location=CLLocationCoordinate2D(latitude: globalLocation.latitude, longitude: globalLocation.longitude);
+        }
+        
         globalLocation.latitude=location.latitude;
         globalLocation.longitude=location.longitude;
         //let location=map.userLocation.coordinate
@@ -114,7 +132,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         updateEvents();
         updateRegion=true;
-        manager.startUpdatingLocation();
+        if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+        {
+            manager.startUpdatingLocation();
+        }
         
     }
     
@@ -141,7 +162,11 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             let setNewLocation: UIAlertAction = UIAlertAction(title: "Set As New Location", style: .Default) { action -> Void in
                 globalLocation.latitude=newCoord.latitude;
                 globalLocation.longitude=newCoord.longitude;
-                self.manager.startUpdatingLocation()
+                if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+                {
+                    self.manager.startUpdatingLocation()
+                   
+                }
                 self.updateRegion=true;
                 
             }
@@ -205,19 +230,19 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         }
     }
     
-        //updating location function **** GAME LOOP ****
-    func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject])
+    func update()
     {
+        
         let location=CLLocationCoordinate2D(latitude: globalLocation.latitude, longitude: globalLocation.longitude);
         
         if(updateRegion==true)
         {
-        //let location=map.userLocation.coordinate
+            //let location=map.userLocation.coordinate
             var sp=user!.theSpan*2*1.73205080757;
-        
+            
             var newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpanMake(sp, sp));
-        
-        map.setRegion(newRegion, animated: true)
+            
+            map.setRegion(newRegion, animated: true)
             
             updateEvents();
             circleAdded=false;
@@ -227,14 +252,17 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         }
         else
         {
-            
-            manager.stopUpdatingLocation()
+            if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+            {
+                
+                manager.stopUpdatingLocation()
+            }
         }
-
         
-       
+        
+        
         //current user location
-      //  var location1 = CLLocation(latitude: map.userLocation.coordinate.latitude, longitude: map.userLocation.coordinate.longitude)
+        //  var location1 = CLLocation(latitude: map.userLocation.coordinate.latitude, longitude: map.userLocation.coordinate.longitude)
         
         
         //Adding the circle to our location
@@ -245,7 +273,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             circleAdded=true;
             
         }
-      
+        
         
         
         //Coverting CLlocation to readable address
@@ -268,6 +296,13 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
         
         
+    }
+    
+        //updating location function **** GAME LOOP ****
+    func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject])
+    {
+     
+        update();
     
     }
     
@@ -462,7 +497,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         }
         user!.theSpan=toSpan(Double(miles));
         theRadius=milesToMeters(Double(miles));
-        manager.startUpdatingLocation()
+        if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+        {
+            manager.startUpdatingLocation()
+        }
         updateRegion=true;
         updateEvents();
         pickerView.hidden=true;

@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import CoreLocation
 
+var haveLocation = CLLocationManager.authorizationStatus();
+
 class mainTabView: UITabBarController, CLLocationManagerDelegate {
 
      var manager:CLLocationManager!
@@ -23,6 +25,20 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
+       
+       
+        
+        
+        while(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined)
+        {
+            println("waiting");
+            
+        }
+        haveLocation=CLLocationManager.authorizationStatus();
+
+        if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+        {
+            
         manager.startUpdatingLocation()
         
         globalLocation.longitude=manager.location.coordinate.longitude;
@@ -30,7 +46,7 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
         
         
         manager.stopUpdatingLocation()
-        
+        }
         super.viewDidLoad()
  
         
