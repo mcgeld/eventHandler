@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 import CoreLocation
 
+var globalLocation = Location(lat: 0.0, lon: 0.0)
+
 class mainTabView: UITabBarController, CLLocationManagerDelegate {
 
      var manager:CLLocationManager!
     
     
     override func viewDidLoad() {
-        
         
         //Setup our Location Manager
         manager = CLLocationManager()
@@ -25,8 +26,14 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
         manager.requestAlwaysAuthorization()
         manager.startUpdatingLocation()
         
-        globalLocation.longitude=manager.location.coordinate.longitude;
-        globalLocation.latitude=manager.location.coordinate.latitude;
+        
+        
+        var lon = manager.location.coordinate.longitude
+        var lat = manager.location.coordinate.latitude
+        globalLocation.longitude = lon
+        globalLocation.latitude = lat
+        
+        
         
         
         manager.stopUpdatingLocation()

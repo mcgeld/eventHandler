@@ -45,9 +45,9 @@ class createEventDateView: UIViewController {
         formatter.dateFormat = "YYYY':'MM':'dd':'HH':'mm'"
         
         let strDate = formatter.stringFromDate(date)
-        
+        println(strDate)
         let dateTime = DateTime(dateTimeString: strDate)
-        
+        println(dateTime.toString())
         let duration = durationTF.text.toInt()
         
        

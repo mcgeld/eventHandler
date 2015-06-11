@@ -16,7 +16,8 @@ import MapKit
 import CoreLocation
 
 var events = [Event]()
-var globalLocation = Location(lat: 0, lon: 0)
+//var globalLocation = Location(lat: 0, lon: 0)
+//var globalLocation = Location()
 
 class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   

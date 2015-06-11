@@ -13,6 +13,7 @@ class Location
     var latitude : Double
     var longitude : Double
     
+    
     init(lat : Double, lon : Double)
     {
         self.latitude = lat;
