@@ -19,7 +19,6 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         
-        
         //Setup our Location Manager
         manager = CLLocationManager()
         manager.delegate = self
@@ -41,8 +40,14 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
             
         manager.startUpdatingLocation()
         
-        globalLocation.longitude=manager.location.coordinate.longitude;
-        globalLocation.latitude=manager.location.coordinate.latitude;
+        
+        
+        var lon = manager.location.coordinate.longitude
+        var lat = manager.location.coordinate.latitude
+        globalLocation.longitude = lon
+        globalLocation.latitude = lat
+        
+        
         
         
         manager.stopUpdatingLocation()
