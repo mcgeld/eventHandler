@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
-                                <rect key="frame" x="0.0" y="144" width="600" height="456"/>
+                                <rect key="frame" x="0.0" y="113" width="600" height="487"/>
                                 <gestureRecognizers/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdO-SE-y61">
@@ -298,7 +298,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEd-iF-2zX">
-                                <rect key="frame" x="16" y="106" width="48" height="30"/>
+                                <rect key="frame" x="16" y="75" width="48" height="30"/>
                                 <state key="normal" title="Radius">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -312,7 +312,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nbo-hK-bgc">
-                                <rect key="frame" x="543" y="144" width="41" height="30"/>
+                                <rect key="frame" x="543" y="113" width="41" height="30"/>
                                 <state key="normal" title="Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -320,8 +320,8 @@
                                     <action selector="homeButton:" destination="Gkn-yg-XIV" eventType="touchUpInside" id="AdR-qD-NTj"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="prominent" prompt="Please Enter Address Here" placeholder="Address" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-UC-40d">
-                                <rect key="frame" x="0.0" y="31" width="600" height="75"/>
+                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Address" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-UC-40d">
+                                <rect key="frame" x="0.0" y="31" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>

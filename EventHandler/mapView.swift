@@ -27,7 +27,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
     var updateRegion=true;
     var circleAdded=false;
     var circle=MKCircle();
-     var pickerDataSource = [".5", "1", "4", "10","15","25","50"];
+     var pickerDataSource = [".5 Miles", "1 Mile", "4 Miles", "10 Miles","15 Miles","25 Miles","50 Miles"];
     
     //outlets
 
@@ -76,8 +76,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
         
         
         addressBar.delegate=self;
-        addressBar.showsSearchResultsButton=true;
         addressBar.hidden = false;
+        addressBar.showsCancelButton=true;
         
         //default range of view
         user!.theSpan=toSpan(1);
@@ -189,11 +189,11 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
             annotationController.addAction(setNewLocation)
             //Create and add a second option action
             let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
-                var newAnotation = MKPointAnnotation()
-                newAnotation.coordinate = newCoord
-                newAnotation.title = "New Location"
-                newAnotation.subtitle = "New Subtitle"
-                self.map.addAnnotation(newAnotation)
+               // var newAnotation = MKPointAnnotation()
+                //newAnotation.coordinate = newCoord
+                //newAnotation.title = "New Location"
+                //newAnotation.subtitle = "New Subtitle"
+                //self.map.addAnnotation(newAnotation)
                 var eventLoc = Location(lat: newCoord.latitude, lon: newCoord.longitude)
                 self.performSegueWithIdentifier("createEvent", sender: eventLoc)
                 
@@ -216,7 +216,6 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
  
     func searchBarSearchButtonClicked(searchBar: UISearchBar)
     {
-          println(addressBar.text);
         
         var geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressBar.text, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
@@ -428,7 +427,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
                 //Create and add a second option action
                 let createNewEvent: UIAlertAction = UIAlertAction(title: "Create An Event", style: .Default) { action -> Void in
                     
-                    self.performSegueWithIdentifier("createEvent", sender: nil)
+                    var eventLoc = Location(lat: self.manager.location.coordinate.latitude, lon: self.manager.location.coordinate.longitude)
+                    self.performSegueWithIdentifier("createEvent", sender: eventLoc)
                     
                 }
                 annotationController.addAction(createNewEvent)
