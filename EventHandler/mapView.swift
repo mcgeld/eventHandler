@@ -19,7 +19,7 @@ var events = [Event]()
 //var globalLocation = Location(lat: 0, lon: 0)
 //var globalLocation = Location()
 
-class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
   
    
    // var theSpan=0.045
@@ -31,7 +31,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     //outlets
 
-    @IBOutlet var locationLabel: UILabel!
+   
     @IBOutlet var map: MKMapView!
     @IBOutlet var radiusButtonOutlet: UIButton!
     var manager:CLLocationManager!
@@ -39,16 +39,18 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     
     var timer=NSTimer();
     
-    @IBOutlet var longPress: UILongPressGestureRecognizer!
-    
+   
     @IBOutlet var milePicker: UIPickerView!
 
-
+    @IBOutlet var addressBar: UISearchBar!
+    
 
 
     
     override func viewDidLoad()
     {
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -62,7 +64,11 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         milePicker.layer.borderColor = UIColor.blueColor().CGColor
         milePicker.layer.borderWidth = 5
         milePicker.backgroundColor=UIColor.lightGrayColor();
-     
+        
+        
+        addressBar.delegate=self;
+        addressBar.showsSearchResultsButton=true;
+        addressBar.hidden = false;
         
         //default range of view
         user!.theSpan=toSpan(1);
@@ -95,7 +101,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         map.mapType = MKMapType.Standard
         map.showsUserLocation = true
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: "action:")
+        let longPress = UILongPressGestureRecognizer(target: self, action: "pinRequest:")
         longPress.minimumPressDuration = 1.0
         map.addGestureRecognizer(longPress)
         
@@ -140,7 +146,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         
     }
     
-    func action(gestureRecognizer:UIGestureRecognizer)
+    func pinRequest(gestureRecognizer:UIGestureRecognizer)
     {
 
         if(gestureRecognizer.state==UIGestureRecognizerState.Began)
@@ -196,10 +202,41 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
         }
         
     }
+    
+
+ 
+    func searchBarSearchButtonClicked(searchBar: UISearchBar)
+    {
+          println(addressBar.text);
+        
+        var geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(addressBar.text, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
+            if let placemark = placemarks?[0] as? CLPlacemark
+            {
+                var loc = (MKPlacemark(placemark: placemark)).coordinate;
+                globalLocation.latitude=loc.latitude;
+                globalLocation.longitude=loc.longitude;
+                self.updateRegion=true;
+                self.manager.startUpdatingLocation();
+            }
+            else
+            {
+                println("couldn't find");
+                
+            }
+        })
+       
+        addressBar.resignFirstResponder();
+    }
+
+
    
     
     func updateEvents()
     {
+        
+     
+        
         for(var i=eventPins.count-1; i>0; i--)
         {
             map.removeAnnotation(eventPins[i]);
@@ -396,25 +433,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
                 selected=mapView.selectedAnnotations[0] as! MKPointAnnotation;
             }
         }
- /*       if(eventPins.count>0)
-        {
-       
-            if var s=selected
-            {
-                if contains(eventPins,s)
-                {
-                 
-                    var index=find(eventPins, s);
-                    index = index! - 1;
-                    self.performSegueWithIdentifier("detailSegue2", sender: events[index!])
-            
-                }
-            }
-        
-        
-        }
- 
-        */
+
         
     
         
@@ -448,7 +467,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
     func displayLocationInfo(placemark: CLPlacemark!) {
         if placemark != nil {
             
-            locationLabel.text="";
+           
+            //locationLabel.text="";
             var text="";
            // text+="\(placemark.subLocality) "
             text+="\(placemark.subThoroughfare) "
@@ -457,7 +477,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             text+=" \(placemark.administrativeArea ),"
             text+=" \(placemark.postalCode ) "
             text+=" \(placemark.country)"
-            locationLabel.text=text;
+           // locationLabel.text=text;
+            addressBar.placeholder=text;
         }
         
     }
@@ -565,5 +586,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, U
             vc.pinLoc = pinLoc
         }
     }
+    func DismissKeyboard(){
+        view.endEditing(true)
+    }
+    
     
 }
