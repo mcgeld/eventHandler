@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
+var globalLocation = Location(lat: 0.0, lon: 0.0)
 var haveLocation = CLLocationManager.authorizationStatus();
 
 class mainTabView: UITabBarController, CLLocationManagerDelegate {
