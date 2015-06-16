@@ -49,11 +49,26 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        updateRegion=true;
+        if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+        {
+            manager.startUpdatingLocation()
+            
+        }
+        else
+        {
+          if(timer.valid==false)
+          {
+                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+            }
+        }
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        timer.invalidate();
     }
     
     override func viewDidLoad()
@@ -225,7 +240,10 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
                 globalLocation.latitude=loc.latitude;
                 globalLocation.longitude=loc.longitude;
                 self.updateRegion=true;
-                self.manager.startUpdatingLocation();
+                if(haveLocation == CLAuthorizationStatus.AuthorizedAlways)
+                {
+                    self.manager.startUpdatingLocation();
+                }
             }
             else
             {

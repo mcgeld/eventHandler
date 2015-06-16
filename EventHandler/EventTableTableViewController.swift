@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
-class EventTableTableViewController: UITableViewController, UITableViewDataSource {
+class EventTableTableViewController: UITableViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate, UITableViewDataSource {
 
     
     //var events : [Event]?
     
    
+    @IBOutlet var addressBar: UISearchBar!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addressBar.delegate=self;
+        addressBar.hidden = false;
+        addressBar.showsCancelButton=true;
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -103,7 +110,43 @@ class EventTableTableViewController: UITableViewController, UITableViewDataSourc
         return true
     }
     */
+    func updateEvents()
+    {
+        
+        
+        var location = globalLocation;
+        
+        events = db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan))!;
+        self.tableView.reloadData()
+    }
 
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar)
+    {
+        
+        var geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(addressBar.text, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
+            if let placemark = placemarks?[0] as? CLPlacemark
+            {
+                var loc = (MKPlacemark(placemark: placemark)).coordinate;
+                globalLocation.latitude=loc.latitude;
+                globalLocation.longitude=loc.longitude;
+              
+            }
+            else
+            {
+                println("couldn't find");
+                
+            }
+        })
+        updateEvents();
+        addressBar.resignFirstResponder();
+    }
+    func toMiles(span:Double)->Double
+    {
+        return span*69;
+        
+    }
     
     // MARK: - Navigation
 
