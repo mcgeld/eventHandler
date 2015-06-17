@@ -21,6 +21,7 @@
 		591F4DDB1B1990760022B675 /* profileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591F4DDA1B1990760022B675 /* profileView.swift */; };
 		59ED426C1B069AF500B23B9C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED426B1B069AF500B23B9C /* Database.swift */; };
 		AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0799261B1A20EA001211D3 /* mainTabView.swift */; };
+		AD1BC6B81B30E1F7002825A7 /* radius.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1BC6B71B30E1F7002825A7 /* radius.png */; };
 		ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6D7281AF98C4C00A67045 /* mapView.swift */; };
 		FC64B4ED1B1A711C003135AD /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */; };
 		FC92C6851B17DE8800B0B2CE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */; };
@@ -66,6 +67,7 @@
 		591F4DDA1B1990760022B675 /* profileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileView.swift; sourceTree = "<group>"; };
 		59ED426B1B069AF500B23B9C /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		AD0799261B1A20EA001211D3 /* mainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainTabView.swift; path = ../mainTabView.swift; sourceTree = "<group>"; };
+		AD1BC6B71B30E1F7002825A7 /* radius.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radius.png; sourceTree = "<group>"; };
 		ADD6D7281AF98C4C00A67045 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		FCD44E671AF88AC200F18D35 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD1BC6B71B30E1F7002825A7 /* radius.png */,
 				591F4DC61B1982B10022B675 /* listButton.png */,
 				591F4DC71B1982B10022B675 /* listButton@2x.png */,
 				591F4DC81B1982B10022B675 /* listButton@3x.png */,
@@ -278,6 +281,7 @@
 				FCD44E741AF88AC200F18D35 /* LaunchScreen.xib in Resources */,
 				591F4DD61B1982B10022B675 /* profileButton@2x.png in Resources */,
 				591F4DD01B1982B10022B675 /* listButton@2x.png in Resources */,
+				AD1BC6B81B30E1F7002825A7 /* radius.png in Resources */,
 				591F4DD41B1982B10022B675 /* mapButton@3x.png in Resources */,
 				591F4DD21B1982B10022B675 /* mapButton.png in Resources */,
 				591F4DD51B1982B10022B675 /* profileButton.png in Resources */,

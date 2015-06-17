@@ -613,6 +613,12 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
             vc.pinLoc = pinLoc
         }
     }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar)
+    {
+        addressBar.text="";
+        addressBar.resignFirstResponder();
+        
+    }
     func DismissKeyboard(){
         view.endEditing(true)
     }

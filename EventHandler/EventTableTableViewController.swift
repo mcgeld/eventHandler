@@ -15,16 +15,18 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     
     //var events : [Event]?
     
-   
+    var locationBarHidden:Bool?
     @IBOutlet var addressBar: UISearchBar!
     
+    @IBOutlet var locationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addressBar.delegate=self;
-        addressBar.hidden = false;
+        addressBar.hidden = true;
         addressBar.showsCancelButton=true;
+        locationBarHidden=true;
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,11 +42,27 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     
     
     override func viewWillAppear(animated: Bool) {
+        addressBar.hidden=true;
+        locationBarHidden=true;
         //var location = user!.defaultLocation
         //events = db.getEventsByLocation(user!.id, location: location, range: 50)
         self.tableView.reloadData()
+      
     }
 
+    @IBAction func locationButtonPressed(sender: AnyObject)
+    {
+        if(locationBarHidden==true)
+        {
+            addressBar.hidden=false;
+            locationBarHidden=false;
+        }
+        else
+        {
+            locationBarHidden=true;
+            addressBar.hidden=true;
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,7 +79,9 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
+        println(events.count);
         return events.count
+        
     }
 
     
@@ -113,13 +133,19 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     func updateEvents()
     {
         
+        events = db.getEventsByLocation(user!.id, location: globalLocation, range: toMiles(user!.theSpan))!;
         
-        var location = globalLocation;
-        
-        events = db.getEventsByLocation(user!.id, location: location, range: toMiles(user!.theSpan))!;
         self.tableView.reloadData()
     }
 
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar)
+    {
+            addressBar.text="";
+        addressBar.resignFirstResponder();
+        locationBarHidden=true;
+        addressBar.hidden=true;
+    }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar)
     {
@@ -129,6 +155,7 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
             if let placemark = placemarks?[0] as? CLPlacemark
             {
                 var loc = (MKPlacemark(placemark: placemark)).coordinate;
+          
                 globalLocation.latitude=loc.latitude;
                 globalLocation.longitude=loc.longitude;
               
@@ -138,8 +165,10 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
                 println("couldn't find");
                 
             }
+            self.updateEvents();
         })
-        updateEvents();
+        
+        
         addressBar.resignFirstResponder();
     }
     func toMiles(span:Double)->Double

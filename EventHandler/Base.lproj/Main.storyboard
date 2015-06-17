@@ -287,32 +287,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
-                                <rect key="frame" x="0.0" y="113" width="600" height="487"/>
-                                <gestureRecognizers/>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdO-SE-y61">
-                                <rect key="frame" x="16" y="550" width="89" height="30"/>
-                                <state key="normal" title="Create Event">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEd-iF-2zX">
-                                <rect key="frame" x="16" y="75" width="48" height="30"/>
-                                <state key="normal" title="Radius">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEd-iF-2zX">
+                                <rect key="frame" x="16" y="75" width="38" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="TvK-kF-eXo"/>
+                                </constraints>
+                                <state key="normal" image="radius.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="radiusButtonAction:" destination="Gkn-yg-XIV" eventType="touchUpInside" id="kJe-8r-0io"/>
                                 </connections>
                             </button>
-                            <pickerView alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-gC-wyt">
-                                <rect key="frame" x="0.0" y="471" width="600" height="162"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </pickerView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-Ez-q6O">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <gestureRecognizers/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nbo-hK-bgc">
-                                <rect key="frame" x="543" y="113" width="41" height="30"/>
+                                <rect key="frame" x="543" y="108" width="41" height="30"/>
                                 <state key="normal" title="Home">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -320,6 +312,17 @@
                                     <action selector="homeButton:" destination="Gkn-yg-XIV" eventType="touchUpInside" id="AdR-qD-NTj"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdO-SE-y61">
+                                <rect key="frame" x="16" y="550" width="89" height="30"/>
+                                <state key="normal" title="Create Event">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <pickerView alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pf5-gC-wyt">
+                                <rect key="frame" x="0.0" y="471" width="600" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </pickerView>
                             <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Address" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-UC-40d">
                                 <rect key="frame" x="0.0" y="31" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -327,22 +330,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Nbo-hK-bgc" firstAttribute="trailing" secondItem="DSx-tY-Pe7" secondAttribute="trailingMargin" id="4hG-AS-Zz5"/>
-                            <constraint firstItem="xEd-iF-2zX" firstAttribute="top" secondItem="Wdf-UC-40d" secondAttribute="bottom" id="5dY-Lb-Xor"/>
-                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leading" id="IJo-4y-vvB"/>
-                            <constraint firstAttribute="bottom" secondItem="FdO-SE-y61" secondAttribute="bottom" constant="20" symbolic="YES" id="Q6q-yx-eql"/>
-                            <constraint firstItem="Wdf-UC-40d" firstAttribute="leading" secondItem="3fE-Ez-q6O" secondAttribute="leading" id="Rgm-1y-YFZ"/>
-                            <constraint firstItem="FdO-SE-y61" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leadingMargin" id="Ubb-F9-XKh"/>
-                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="top" secondItem="xEd-iF-2zX" secondAttribute="bottom" constant="8" symbolic="YES" id="X7F-yi-cSq"/>
-                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="trailing" secondItem="pf5-gC-wyt" secondAttribute="trailing" id="eNa-zB-R0a"/>
-                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="bottom" secondItem="9W0-lN-mls" secondAttribute="top" id="eUe-7m-RlN"/>
-                            <constraint firstItem="Wdf-UC-40d" firstAttribute="top" secondItem="1oD-7m-6EG" secondAttribute="bottom" constant="11" id="gAf-Io-Q4i"/>
-                            <constraint firstAttribute="trailing" secondItem="3fE-Ez-q6O" secondAttribute="trailing" id="jS9-pf-vLu"/>
-                            <constraint firstItem="pf5-gC-wyt" firstAttribute="leading" secondItem="3fE-Ez-q6O" secondAttribute="leading" id="oGm-ja-U33"/>
-                            <constraint firstItem="Nbo-hK-bgc" firstAttribute="top" secondItem="3fE-Ez-q6O" secondAttribute="top" id="oqI-Ot-I7Q"/>
-                            <constraint firstItem="xEd-iF-2zX" firstAttribute="leading" secondItem="FdO-SE-y61" secondAttribute="leading" id="qBz-qM-btb"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="pf5-gC-wyt" secondAttribute="bottom" constant="-33" id="voB-yb-tmV"/>
-                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="trailing" secondItem="Wdf-UC-40d" secondAttribute="trailing" id="why-RZ-nzp"/>
+                            <constraint firstItem="pf5-gC-wyt" firstAttribute="leading" secondItem="3fE-Ez-q6O" secondAttribute="leading" id="PEb-Ai-mnC"/>
+                            <constraint firstItem="Nbo-hK-bgc" firstAttribute="trailing" secondItem="DSx-tY-Pe7" secondAttribute="trailingMargin" id="Qb5-Cp-HY8"/>
+                            <constraint firstItem="Wdf-UC-40d" firstAttribute="top" secondItem="1oD-7m-6EG" secondAttribute="bottom" constant="11" id="SLg-KV-na3"/>
+                            <constraint firstItem="Nbo-hK-bgc" firstAttribute="top" secondItem="Wdf-UC-40d" secondAttribute="bottom" constant="33" id="WB4-Bw-4mL"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="trailing" secondItem="pf5-gC-wyt" secondAttribute="trailing" id="eau-9d-0yZ"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="leading" secondItem="Wdf-UC-40d" secondAttribute="leading" id="fKb-V9-o15"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="top" secondItem="xEd-iF-2zX" secondAttribute="bottom" constant="-1" id="gOy-d2-lGe"/>
+                            <constraint firstItem="xEd-iF-2zX" firstAttribute="top" secondItem="Wdf-UC-40d" secondAttribute="bottom" id="gVk-DH-siu"/>
+                            <constraint firstItem="Nbo-hK-bgc" firstAttribute="top" secondItem="3fE-Ez-q6O" secondAttribute="top" id="ght-BU-uKz"/>
+                            <constraint firstItem="FdO-SE-y61" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leadingMargin" id="l7U-zC-XSl"/>
+                            <constraint firstAttribute="bottom" secondItem="FdO-SE-y61" secondAttribute="bottom" constant="20" symbolic="YES" id="mqR-RV-Xcu"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="pf5-gC-wyt" secondAttribute="bottom" constant="-33" id="p6c-Hh-xxy"/>
+                            <constraint firstItem="Wdf-UC-40d" firstAttribute="trailing" secondItem="3fE-Ez-q6O" secondAttribute="trailing" id="rvk-yI-CzN"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="leading" secondItem="DSx-tY-Pe7" secondAttribute="leading" id="sJF-Y1-CJB"/>
+                            <constraint firstItem="3fE-Ez-q6O" firstAttribute="bottom" secondItem="9W0-lN-mls" secondAttribute="top" id="tlh-gF-yPb"/>
+                            <constraint firstAttribute="trailing" secondItem="3fE-Ez-q6O" secondAttribute="trailing" id="uIC-kp-9Go"/>
+                            <constraint firstItem="FdO-SE-y61" firstAttribute="leading" secondItem="xEd-iF-2zX" secondAttribute="leading" id="uZv-Vj-Mi2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ncV-8c-nxX"/>
@@ -711,9 +715,23 @@
                             <outlet property="delegate" destination="ZXf-FJ-K7D" id="jIZ-Nx-d9o"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Events" id="ur6-OC-rd8"/>
+                    <navigationItem key="navigationItem" title="Events" id="ur6-OC-rd8">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="dN0-xq-TQo">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="n0O-Z2-9U4">
+                                <rect key="frame" x="16" y="7" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="mapButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="locationButtonPressed:" destination="ZXf-FJ-K7D" eventType="touchUpInside" id="slS-Sh-d2E"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressBar" destination="lsi-Rc-L4E" id="xWj-Xo-2WT"/>
+                        <outlet property="locationButton" destination="n0O-Z2-9U4" id="bnc-Hx-Yqn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KkP-Jk-4lU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -860,9 +878,10 @@
         <image name="listButton.png" width="25" height="25"/>
         <image name="mapButton.png" width="25" height="25"/>
         <image name="profileButton.png" width="25" height="25"/>
+        <image name="radius.png" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7HE-DW-Yf9"/>
         <segue reference="fj2-Lp-5fL"/>
+        <segue reference="7HE-DW-Yf9"/>
     </inferredMetricsTieBreakers>
 </document>
