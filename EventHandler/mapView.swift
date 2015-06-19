@@ -38,6 +38,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
      var eventPins = [MKPointAnnotation()]
     
     var timer=NSTimer();
+  
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
    
     @IBOutlet var milePicker: UIPickerView!
@@ -132,8 +134,15 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
         updateEvents();
         
         
-       
-       
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+       // var user:User;
+        // var user=User(_id : 66, _firstName : "Caden", _lastName : "Sorenson", _username : "caden311", _phoneNumber : 4358811555, _rating : 9, _defaultLocation : Location)
+                
     }
     @IBAction func radiusButtonAction(sender: AnyObject) {
         milePicker.hidden=false;

@@ -15,6 +15,8 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     
     //var events : [Event]?
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+   
     var locationBarHidden:Bool?
     @IBOutlet var addressBar: UISearchBar!
     
@@ -36,7 +38,12 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
         //var location = user!.defaultLocation
         //events = db.getEventsByLocation(user!.id, location: location, range: 50)
         
-        println("Table View")
+        
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
       
     }
     
