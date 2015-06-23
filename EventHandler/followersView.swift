@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class followersView: UIViewController
+class followersView: UITableViewController
 {
   
     

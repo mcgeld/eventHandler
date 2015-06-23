@@ -14,6 +14,7 @@ class FriendView: UIViewController
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var followersContainer: UIView!
     @IBOutlet var followingContainer: UIView!
+    @IBOutlet var friendContainer: UIView!
     
     override func viewDidLoad()
     {
@@ -30,15 +31,21 @@ class FriendView: UIViewController
         {
             followersContainer.hidden=false;
             followingContainer.hidden=true;
+            friendContainer.hidden=true;
+            
         }
         else if(segmentedControl.selectedSegmentIndex == 1)
         {
             followersContainer.hidden=true;
-            followingContainer.hidden=false;
+            followingContainer.hidden=true;
+            friendContainer.hidden=false;
             
         }
         else
         {
+            followersContainer.hidden=true;
+            followingContainer.hidden=false;
+            friendContainer.hidden=true;
             
         }
         
