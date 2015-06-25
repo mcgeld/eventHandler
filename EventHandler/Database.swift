@@ -131,6 +131,52 @@ class Database {
         }
     }
     
+    func getEventsByUser(userId : Int) -> [Event]?
+    {
+        dbErr = 0
+        if let result : NSDictionary = getWebResults(self.ip + "getEventsByUser.php?userId=" + String(userId))
+        {
+            dbMessage = result["message"] as! String
+            if(result["response"] as! String == "success")
+            {
+                let innerResult = result["result"] as! NSArray?
+                var returnList : [Event] = []
+                for(var i = 0; i < innerResult?.count; i++)
+                {
+                    let id = (innerResult![i]["id"] as! String).toInt()!
+                    let title = innerResult![i]["title"] as! String
+                    let description = innerResult![i]["description"] as! String
+                    let date = DateTime(dateTimeString: innerResult![i]["date"] as! String)
+                    let duration = (innerResult![i]["duration"] as! String).toInt()!
+                    let location = Location(lat: (innerResult![i]["locationLat"] as! NSString).doubleValue, lon: (innerResult![i]["locationLon"] as! NSString).doubleValue)
+                    let privateEvent = (innerResult![i]["privateEvent"] as! String) == "1"
+                    let maxAttendance = (innerResult![i]["maxAttendance"] as! String).toInt()!
+                    let minRating = (innerResult![i]["minRating"] as! NSString).doubleValue
+                    let daysFromToday = (innerResult![i]["daysFromToday"] as! String).toInt()!
+                    
+                    returnList.append(Event(_id: id, _title: title, _description: description, _date: date, _duration: duration, _location: location, _public: privateEvent, _maxAttendance: maxAttendance, _minRating: minRating, _daysFromToday: daysFromToday))
+                }
+                return returnList
+            }
+            else if(result["response"] as! String == "failure")
+            {
+                dbErr = 1
+                return nil
+            }
+            else
+            {
+                dbErr = 2
+                return nil
+            }
+        }
+        else
+        {
+            dbErr = 2
+            dbMessage = "Connection returned nil"
+            return nil
+        }
+    }
+    
     func createEvent(_userId : Int, _title : String, _description : String, _date : DateTime, _duration : Int, _location : Location, _private : Bool, _maxAttendance : Int, _minRating : Double) -> Event?
     {
         dbErr = 0
