@@ -28,6 +28,7 @@
 		FC62400C1B2FB33C005359BE /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC62400B1B2FB33C005359BE /* MenuController.swift */; };
 		FC64B4ED1B1A711C003135AD /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */; };
 		FC92C6851B17DE8800B0B2CE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */; };
+		FC9F23ED1B35F21500F3F5DB /* profileEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F23EC1B35F21500F3F5DB /* profileEventsView.swift */; };
 		FCC0DA521B210F900084C1FA /* createEventDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */; };
 		FCC0DA541B251D840084C1FA /* createEventLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC0DA531B251D840084C1FA /* createEventLocationView.swift */; };
 		FCD127111B0D5F4500C366B0 /* EventTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */; };
@@ -78,6 +79,7 @@
 		FC62400B1B2FB33C005359BE /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		FC9F23EC1B35F21500F3F5DB /* profileEventsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileEventsView.swift; sourceTree = "<group>"; };
 		FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createEventDateView.swift; sourceTree = "<group>"; };
 		FCC0DA531B251D840084C1FA /* createEventLocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createEventLocationView.swift; sourceTree = "<group>"; };
 		FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableTableViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC9F23EA1B35ED2B00F3F5DB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				59104F181B069EAB00AE00B2 /* DateTime.swift */,
+				59ED426B1B069AF500B23B9C /* Database.swift */,
+				FCD44E971AFC901400F18D35 /* Comment.swift */,
+				FCD44E951AFC8E0E00F18D35 /* Forum.swift */,
+				FCD44E931AFC2F1E00F18D35 /* Map.swift */,
+				FCD44E911AF8964400F18D35 /* Event.swift */,
+				FCD44E8F1AF8903D00F18D35 /* Location.swift */,
+				FCD44E891AF88C0E00F18D35 /* User.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		FC9F23EB1B35F09800F3F5DB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				591F4DD81B1986CF0022B675 /* loginView.swift */,
+				AD0799261B1A20EA001211D3 /* mainTabView.swift */,
+				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
+				FC62400B1B2FB33C005359BE /* MenuController.swift */,
+				FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */,
+				FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */,
+				FCC0DA531B251D840084C1FA /* createEventLocationView.swift */,
+				FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */,
+				FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */,
+				FC9F23EC1B35F21500F3F5DB /* profileEventsView.swift */,
+				591F4DDA1B1990760022B675 /* profileView.swift */,
+				FCD44E6B1AF88AC200F18D35 /* ViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		FCD44E5B1AF88AC200F18D35 = {
 			isa = PBXGroup;
 			children = (
@@ -141,28 +177,11 @@
 		FCD44E661AF88AC200F18D35 /* EventHandler */ = {
 			isa = PBXGroup;
 			children = (
+				FC9F23EB1B35F09800F3F5DB /* Views */,
+				FC9F23EA1B35ED2B00F3F5DB /* Classes */,
 				FCD552A11B2B9D6B00972CAD /* SideBar  */,
-				59104F181B069EAB00AE00B2 /* DateTime.swift */,
-				59ED426B1B069AF500B23B9C /* Database.swift */,
-				FCD44E971AFC901400F18D35 /* Comment.swift */,
-				FCD44E951AFC8E0E00F18D35 /* Forum.swift */,
-				FCD44E931AFC2F1E00F18D35 /* Map.swift */,
-				FCD44E911AF8964400F18D35 /* Event.swift */,
-				FCD44E8F1AF8903D00F18D35 /* Location.swift */,
-				FCD44E891AF88C0E00F18D35 /* User.swift */,
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
-				591F4DD81B1986CF0022B675 /* loginView.swift */,
-				AD0799261B1A20EA001211D3 /* mainTabView.swift */,
-				FCD44E6B1AF88AC200F18D35 /* ViewController.swift */,
-				FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */,
-				FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */,
-				FCC0DA531B251D840084C1FA /* createEventLocationView.swift */,
-				FCD127101B0D5F4500C366B0 /* EventTableTableViewController.swift */,
-				FC64B4EC1B1A711C003135AD /* EventDetailViewController.swift */,
-				FC62400B1B2FB33C005359BE /* MenuController.swift */,
-				591F4DDA1B1990760022B675 /* profileView.swift */,
 				FC6240061B2FB2B0005359BE /* Main.storyboard */,
-				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
 				FCD44E701AF88AC200F18D35 /* Images.xcassets */,
 				FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */,
 				FCD44E671AF88AC200F18D35 /* Supporting Files */,
@@ -339,6 +358,7 @@
 				591F4DD91B1986CF0022B675 /* loginView.swift in Sources */,
 				FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */,
 				FCD552A51B2B9DBB00972CAD /* SWRevealViewController.m in Sources */,
+				FC9F23ED1B35F21500F3F5DB /* profileEventsView.swift in Sources */,
 				FCD44E941AFC2F1E00F18D35 /* Map.swift in Sources */,
 				FCD44E901AF8903D00F18D35 /* Location.swift in Sources */,
 				FCD44E921AF8964400F18D35 /* Event.swift in Sources */,

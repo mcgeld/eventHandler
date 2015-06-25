@@ -39,7 +39,8 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
     
     var timer=NSTimer();
   
-    @IBOutlet weak var menuButton: UIBarButtonItem!
+
+    @IBOutlet weak var menuButton: UIButton!
     
    
     @IBOutlet var milePicker: UIPickerView!
@@ -135,8 +136,9 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
         
         
         if self.revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = "revealToggle:"
+            menuButton.targetForAction("revealToggle:", withSender: self.revealViewController())
+                //= self.revealViewController()
+            //menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         

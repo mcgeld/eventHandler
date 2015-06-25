@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6U1-u1-JCo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6U1-u1-JCo">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -239,24 +239,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boD-UT-kw6">
-                                <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                <state key="normal" title="Edit">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editButtonPressed:" destination="OzY-Jx-umO" eventType="touchUpInside" id="9Tu-3u-S1h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-Zw-q3g">
-                                <rect key="frame" x="272" y="317" width="56" height="30"/>
-                                <state key="normal" title="Log Out">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logoutButtonPressed:" destination="OzY-Jx-umO" eventType="touchUpInside" id="ThA-MH-iUP"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRO-DX-Pna">
                                 <rect key="frame" x="268" y="143" width="219" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -284,6 +266,30 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Lt-4U-PoL">
+                                <rect key="frame" x="0.0" y="276" width="600" height="275"/>
+                                <connections>
+                                    <segue destination="mUj-9J-yE0" kind="embed" id="3X6-kl-xep"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boD-UT-kw6">
+                                <rect key="frame" x="298" y="206" width="30" height="30"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editButtonPressed:" destination="OzY-Jx-umO" eventType="touchUpInside" id="9Tu-3u-S1h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-Zw-q3g">
+                                <rect key="frame" x="285" y="238" width="56" height="30"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="OzY-Jx-umO" eventType="touchUpInside" id="ThA-MH-iUP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -336,6 +342,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BvH-UT-i6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1550" y="-472"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="n9u-fd-LcJ">
+            <objects>
+                <tableViewController id="mUj-9J-yE0" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7LQ-LX-3O7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pdM-51-qxz">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pdM-51-qxz" id="bYx-Zs-fge">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mUj-9J-yE0" id="C1K-nh-dBb"/>
+                            <outlet property="delegate" destination="mUj-9J-yE0" id="rgY-n9-bL4"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PK9-KS-GBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="-472"/>
         </scene>
         <!--Map View-->
         <scene sceneID="pFG-Ty-WzZ">
@@ -803,7 +835,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="ur6-OC-rd8">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="dN0-xq-TQo">
+                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="rSF-Ps-X3T"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="dN0-xq-TQo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="n0O-Z2-9U4">
                                 <rect key="frame" x="16" y="7" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -819,6 +852,7 @@
                     <connections>
                         <outlet property="addressBar" destination="lsi-Rc-L4E" id="xWj-Xo-2WT"/>
                         <outlet property="locationButton" destination="n0O-Z2-9U4" id="bnc-Hx-Yqn"/>
+                        <outlet property="menuButton" destination="rSF-Ps-X3T" id="7Um-NT-ARs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KkP-Jk-4lU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -960,6 +994,24 @@
             </objects>
             <point key="canvasLocation" x="1649" y="247"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4Gc-ch-Zmw">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="IBK-SL-FRS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M9c-bc-vxR"/>
+                        <viewControllerLayoutGuide type="bottom" id="cob-TU-tsn"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pyw-Ue-JhB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UEu-oa-oK2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="listButton.png" width="25" height="25"/>
@@ -970,6 +1022,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fj2-Lp-5fL"/>
-        <segue reference="7HE-DW-Yf9"/>
+        <segue reference="5Ih-K9-1sC"/>
     </inferredMetricsTieBreakers>
 </document>
