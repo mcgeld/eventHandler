@@ -1,15 +1,15 @@
 //
-//  followingView.swift
+//  followingTable.swift
 //  EventHandler
 //
-//  Created by Brittny Wright on 6/22/15.
+//  Created by Brittny Wright on 6/23/15.
 //  Copyright (c) 2015 Wade Wilkey. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class followingView: UITableViewController, UITableViewDataSource, UITableViewDelegate
+class followingTable: UITableViewController
 {
     var friends : [User] = []
     
@@ -45,17 +45,15 @@ class followingView: UITableViewController, UITableViewDataSource, UITableViewDe
         let i = indexPath.row
         cell.textLabel!.text = friends[indexPath.row].firstName + " " + friends[indexPath.row].lastName
         
-     
+        
+        
         
         return cell
     }
     
- 
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        
-        println("it worked");
-    }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -90,7 +88,6 @@ class followingView: UITableViewController, UITableViewDataSource, UITableViewDe
     return true
     }
     */
-    
-    
-    
+
+
 }

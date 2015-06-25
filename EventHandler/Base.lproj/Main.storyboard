@@ -435,6 +435,32 @@
             </objects>
             <point key="canvasLocation" x="3902" y="-889"/>
         </scene>
+        <!--Following View-->
+        <scene sceneID="EHh-bf-WKD">
+            <objects>
+                <tableViewController id="uUw-wt-bTL" customClass="followingView" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hon-v6-0Ce">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cell" id="FnK-SE-bET">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FnK-SE-bET" id="g5u-wr-eYC">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uUw-wt-bTL" id="DGI-VF-AcX"/>
+                            <outlet property="delegate" destination="uUw-wt-bTL" id="PJJ-eP-csL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JfK-0U-PHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3978" y="-387"/>
+        </scene>
         <!--Friend View-->
         <scene sceneID="GiL-8p-5vl">
             <objects>
@@ -447,24 +473,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="An4-bC-bvl">
-                                <rect key="frame" x="0.0" y="109" width="600" height="448"/>
-                                <connections>
-                                    <segue destination="SxM-5j-ErS" kind="embed" id="5ba-aG-UPK"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ryl-aL-6MK">
-                                <rect key="frame" x="0.0" y="109" width="600" height="442"/>
-                                <connections>
-                                    <segue destination="CIk-Ck-z2S" kind="embed" id="dcR-8a-l9H"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-Yz-sXb">
-                                <rect key="frame" x="0.0" y="109" width="600" height="442"/>
-                                <connections>
-                                    <segue destination="c3j-i0-OdL" kind="embed" id="OQx-tU-me6"/>
-                                </connections>
-                            </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="udE-0h-KLK">
                                 <rect key="frame" x="205" y="64" width="191" height="29"/>
                                 <constraints>
@@ -479,6 +487,24 @@
                                     <action selector="SegmentedControlChange:" destination="TmO-I6-CKu" eventType="valueChanged" id="vGG-2e-9mH"/>
                                 </connections>
                             </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="An4-bC-bvl">
+                                <rect key="frame" x="0.0" y="109" width="600" height="448"/>
+                                <connections>
+                                    <segue destination="SxM-5j-ErS" kind="embed" id="5ba-aG-UPK"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ryl-aL-6MK">
+                                <rect key="frame" x="0.0" y="109" width="600" height="442"/>
+                                <connections>
+                                    <segue destination="uUw-wt-bTL" kind="embed" id="NWr-Xm-TE6"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-Yz-sXb">
+                                <rect key="frame" x="0.0" y="109" width="600" height="442"/>
+                                <connections>
+                                    <segue destination="c3j-i0-OdL" kind="embed" id="OQx-tU-me6"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1170,32 +1196,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1G-6u-x3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1550" y="-472"/>
-        </scene>
-        <!--Following View-->
-        <scene sceneID="Za6-rm-nif">
-            <objects>
-                <tableViewController id="CIk-Ck-z2S" customClass="followingView" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SxK-p3-sEp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="faV-5m-xES">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="faV-5m-xES" id="c28-28-hRe">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="CIk-Ck-z2S" id="5eg-L5-fAS"/>
-                            <outlet property="delegate" destination="CIk-Ck-z2S" id="yR8-gS-EWv"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FvD-D4-sAz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3902" y="-378"/>
         </scene>
     </scenes>
     <resources>
