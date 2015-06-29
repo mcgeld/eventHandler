@@ -11,6 +11,8 @@ import UIKit
 
 class profileView : UIViewController {
     
+    var profileUser : User? = nil
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var firstNameLabel: UILabel!
     
@@ -31,6 +33,11 @@ class profileView : UIViewController {
         lastNameLabel.text = user?.lastName
         userNameLabel.text = user?.username
         phoneNumberLabel.text = String(user!.phoneNumber)
+        
+        if profileUser == nil
+        {
+            profileUser = user
+        }
     }
     
     @IBAction func editButtonPressed(sender: UIButton) {
@@ -73,4 +80,25 @@ class profileView : UIViewController {
         user = nil
         performSegueWithIdentifier("logoutSegue", sender: nil)
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "profileTableSegue"
+        {
+            
+            if profileUser == nil
+            {
+                profileUser = user
+            }
+            
+            let pev = segue.destinationViewController as! profileEventsView
+            
+            
+            pev.myUser = profileUser
+        }
+    }
+
+
 }

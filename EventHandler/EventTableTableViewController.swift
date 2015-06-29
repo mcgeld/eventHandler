@@ -86,7 +86,7 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        println(events.count);
+        
         return events.count
         
     }
@@ -103,15 +103,36 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
     }
     
 
-    /*
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        let more = UITableViewRowAction(style: .Normal, title: "More") { action, index in
+            println("more button tapped")
+        }
+        more.backgroundColor = UIColor.lightGrayColor()
+        
+        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            println("favorite button tapped")
+        }
+        favorite.backgroundColor = UIColor.orangeColor()
+        
+        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
+            println("share button tapped")
+        }
+        share.backgroundColor = UIColor.blueColor()
+        
+        println("Here")
+        return [share, favorite, more]
+        
+        
+    }
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -121,7 +142,7 @@ class EventTableTableViewController: UITableViewController, CLLocationManagerDel
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

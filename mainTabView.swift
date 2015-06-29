@@ -67,5 +67,8 @@ class mainTabView: UITabBarController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
 
 }

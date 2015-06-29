@@ -269,7 +269,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Lt-4U-PoL">
                                 <rect key="frame" x="0.0" y="276" width="600" height="275"/>
                                 <connections>
-                                    <segue destination="mUj-9J-yE0" kind="embed" id="3X6-kl-xep"/>
+                                    <segue destination="mUj-9J-yE0" kind="embed" identifier="profileTableSegue" id="3X6-kl-xep"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boD-UT-kw6">
@@ -291,7 +291,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3s6-4n-EdE" firstAttribute="leading" secondItem="BgI-b3-tzv" secondAttribute="trailing" constant="8" symbolic="YES" id="0dl-hO-8DH"/>
                             <constraint firstItem="LpD-ed-csq" firstAttribute="trailing" secondItem="VVe-zR-yLX" secondAttribute="trailing" id="24V-gG-VI3"/>
@@ -343,16 +343,16 @@
             </objects>
             <point key="canvasLocation" x="1550" y="-472"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Profile Events View-->
         <scene sceneID="n9u-fd-LcJ">
             <objects>
-                <tableViewController id="mUj-9J-yE0" sceneMemberID="viewController">
+                <tableViewController id="mUj-9J-yE0" customClass="profileEventsView" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7LQ-LX-3O7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pdM-51-qxz">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="pdM-51-qxz">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pdM-51-qxz" id="bYx-Zs-fge">
                                     <autoresizingMask key="autoresizingMask"/>

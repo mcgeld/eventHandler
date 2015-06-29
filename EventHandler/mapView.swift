@@ -136,7 +136,7 @@ class mapView: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate,
         
         
         if self.revealViewController() != nil {
-            menuButton.targetForAction("revealToggle:", withSender: self.revealViewController())
+            //menuButton.targetForAction("revealToggle:", withSender: self.revealViewController())
                 //= self.revealViewController()
             //menuButton.action = "revealToggle:"
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
