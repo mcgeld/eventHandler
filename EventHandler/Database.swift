@@ -292,4 +292,86 @@ class Database {
             return nil
         }
     }
+    
+    func searchByUsername(_search : String) -> [User]?
+    {
+        dbErr = 0;
+        if let result : NSDictionary = getWebResults(self.ip + "searchByUsername.php?search=" + String(_search))
+        {
+            dbMessage = result["message"] as! String
+            if(result["response"] as! String == "success")
+            {
+                let innerResult = result["result"] as! NSArray?
+                var returnList : [User] = []
+                for(var i = 0; i < innerResult?.count; i++)
+                {
+                    let id = (innerResult![i]["id"] as! String).toInt()!
+                    let firstName = innerResult![i]["firstName"] as! String
+                    let lastName = innerResult![i]["lastName"] as! String
+                    let username = innerResult![i]["username"] as! String
+                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
+                    
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                }
+                return returnList
+            }
+            else if(result["response"] as! String == "failure")
+            {
+                dbErr = 1
+                return nil
+            }
+            else
+            {
+                dbErr = 2
+                return nil
+            }
+        }
+        else
+        {
+            dbErr = 2
+            dbMessage = "Connection returned nil"
+            return nil
+        }
+    }
+    
+    func searchByFullName(_search : String) -> [User]?
+    {
+        dbErr = 0;
+        if let result : NSDictionary = getWebResults(self.ip + "searchByFullName.php?search=" + String(_search))
+        {
+            dbMessage = result["message"] as! String
+            if(result["response"] as! String == "success")
+            {
+                let innerResult = result["result"] as! NSArray?
+                var returnList : [User] = []
+                for(var i = 0; i < innerResult?.count; i++)
+                {
+                    let id = (innerResult![i]["id"] as! String).toInt()!
+                    let firstName = innerResult![i]["firstName"] as! String
+                    let lastName = innerResult![i]["lastName"] as! String
+                    let username = innerResult![i]["username"] as! String
+                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
+                    
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                }
+                return returnList
+            }
+            else if(result["response"] as! String == "failure")
+            {
+                dbErr = 1
+                return nil
+            }
+            else
+            {
+                dbErr = 2
+                return nil
+            }
+        }
+        else
+        {
+            dbErr = 2
+            dbMessage = "Connection returned nil"
+            return nil
+        }
+    }
 };
