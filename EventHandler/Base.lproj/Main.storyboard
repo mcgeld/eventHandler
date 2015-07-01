@@ -410,30 +410,42 @@
             <point key="canvasLocation" x="3919" y="-1427"/>
         </scene>
         <!--Friend Container View-->
-        <scene sceneID="uAQ-sW-gk8">
+        <scene sceneID="exv-sq-NSs">
             <objects>
-                <tableViewController id="c3j-i0-OdL" customClass="friendContainerView" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2PA-sS-IZF">
+                <tableViewController id="2Cv-qZ-B36" customClass="friendContainerView" customModule="EventHandler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Mby-Wn-BnI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="442"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="UQQ-Uj-uzK">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Username</string>
+                                <string>Full Name</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7vr-7O-R63">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="l02-ZQ-Exy">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7vr-7O-R63" id="6Hp-dW-hj9">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l02-ZQ-Exy" id="7VW-zC-byK">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="c3j-i0-OdL" id="u7a-Yw-kxP"/>
-                            <outlet property="delegate" destination="c3j-i0-OdL" id="7tZ-dy-nMb"/>
+                            <outlet property="dataSource" destination="2Cv-qZ-B36" id="laZ-Ko-cRK"/>
+                            <outlet property="delegate" destination="2Cv-qZ-B36" id="Jiq-js-atI"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="UQQ-Uj-uzK" id="vpc-Mj-Bre"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JyH-yj-eQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oZ7-Yx-OYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3902" y="-889"/>
+            <point key="canvasLocation" x="3852.5" y="-873"/>
         </scene>
         <!--Following View-->
         <scene sceneID="EHh-bf-WKD">
@@ -502,7 +514,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHX-Yz-sXb">
                                 <rect key="frame" x="0.0" y="109" width="600" height="442"/>
                                 <connections>
-                                    <segue destination="c3j-i0-OdL" kind="embed" id="OQx-tU-me6"/>
+                                    <segue destination="2Cv-qZ-B36" kind="embed" id="p78-50-V7s"/>
                                 </connections>
                             </containerView>
                         </subviews>
