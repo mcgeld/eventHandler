@@ -22,6 +22,10 @@
 		59ED426C1B069AF500B23B9C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED426B1B069AF500B23B9C /* Database.swift */; };
 		AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0799261B1A20EA001211D3 /* mainTabView.swift */; };
 		AD1BC6B81B30E1F7002825A7 /* radius.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1BC6B71B30E1F7002825A7 /* radius.png */; };
+		AD91959C1B38C9D000C53FBD /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD91959B1B38C9D000C53FBD /* FriendView.swift */; };
+		AD91959E1B38CD4C00C53FBD /* followersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD91959D1B38CD4C00C53FBD /* followersView.swift */; };
+		AD9195A01B38CDC700C53FBD /* followingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD91959F1B38CDC700C53FBD /* followingView.swift */; };
+		AD9195A21B391C1000C53FBD /* friendContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9195A11B391C0F00C53FBD /* friendContainerView.swift */; };
 		ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD6D7281AF98C4C00A67045 /* mapView.swift */; };
 		FC6240051B2FB0B4005359BE /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = FC6240041B2FB0B4005359BE /* menu.png */; };
 		FC6240081B2FB2B0005359BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC6240061B2FB2B0005359BE /* Main.storyboard */; };
@@ -73,6 +77,10 @@
 		59ED426B1B069AF500B23B9C /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		AD0799261B1A20EA001211D3 /* mainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainTabView.swift; path = ../mainTabView.swift; sourceTree = "<group>"; };
 		AD1BC6B71B30E1F7002825A7 /* radius.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radius.png; sourceTree = "<group>"; };
+		AD91959B1B38C9D000C53FBD /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
+		AD91959D1B38CD4C00C53FBD /* followersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followersView.swift; sourceTree = "<group>"; };
+		AD91959F1B38CDC700C53FBD /* followingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followingView.swift; sourceTree = "<group>"; };
+		AD9195A11B391C0F00C53FBD /* friendContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = friendContainerView.swift; sourceTree = "<group>"; };
 		ADD6D7281AF98C4C00A67045 /* mapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapView.swift; sourceTree = "<group>"; };
 		FC6240041B2FB0B4005359BE /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		FC6240071B2FB2B0005359BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -182,6 +190,11 @@
 				FCD552A11B2B9D6B00972CAD /* SideBar  */,
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
 				FC6240061B2FB2B0005359BE /* Main.storyboard */,
+				AD91959F1B38CDC700C53FBD /* followingView.swift */,
+				AD91959D1B38CD4C00C53FBD /* followersView.swift */,
+				AD91959B1B38C9D000C53FBD /* FriendView.swift */,
+				AD9195A11B391C0F00C53FBD /* friendContainerView.swift */,
+				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
 				FCD44E701AF88AC200F18D35 /* Images.xcassets */,
 				FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */,
 				FCD44E671AF88AC200F18D35 /* Supporting Files */,
@@ -351,11 +364,13 @@
 			files = (
 				FCD44E6C1AF88AC200F18D35 /* ViewController.swift in Sources */,
 				FC62400C1B2FB33C005359BE /* MenuController.swift in Sources */,
+				AD9195A01B38CDC700C53FBD /* followingView.swift in Sources */,
 				ADD6D7291AF98C4C00A67045 /* mapView.swift in Sources */,
 				591F4DDB1B1990760022B675 /* profileView.swift in Sources */,
 				FCC0DA541B251D840084C1FA /* createEventLocationView.swift in Sources */,
 				AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */,
 				591F4DD91B1986CF0022B675 /* loginView.swift in Sources */,
+				AD91959E1B38CD4C00C53FBD /* followersView.swift in Sources */,
 				FCD44E6A1AF88AC200F18D35 /* AppDelegate.swift in Sources */,
 				FCD552A51B2B9DBB00972CAD /* SWRevealViewController.m in Sources */,
 				FC9F23ED1B35F21500F3F5DB /* profileEventsView.swift in Sources */,
@@ -370,6 +385,8 @@
 				FCD44E961AFC8E0E00F18D35 /* Forum.swift in Sources */,
 				59104F191B069EAB00AE00B2 /* DateTime.swift in Sources */,
 				FC64B4ED1B1A711C003135AD /* EventDetailViewController.swift in Sources */,
+				AD91959C1B38C9D000C53FBD /* FriendView.swift in Sources */,
+				AD9195A21B391C1000C53FBD /* friendContainerView.swift in Sources */,
 				FCD127111B0D5F4500C366B0 /* EventTableTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

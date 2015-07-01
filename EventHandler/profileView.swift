@@ -40,6 +40,10 @@ class profileView : UIViewController {
         }
     }
     
+    @IBAction func friendsButtonPressed(sender: AnyObject)
+    {
+        self.performSegueWithIdentifier("friendSegue", sender: nil);
+    }
     @IBAction func editButtonPressed(sender: UIButton) {
         if(self.editButton.currentTitle == "Edit")
         {
