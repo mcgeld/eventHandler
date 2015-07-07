@@ -11,7 +11,7 @@ import Foundation
 class Database {
     private var ip : String;
     //Error Codes:
-    // 0 : Successful connection and query
+    // 0 : Successful connection and query with successful result
     // 1 : Successful connection, situational failure BAD
     // 2 : Connection error
     var dbErr : Int = 0
