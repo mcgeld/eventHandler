@@ -12,7 +12,7 @@ class Database {
     private var ip : String;
     //Error Codes:
     // 0 : Successful connection and query
-    // 1 : Successful connection, situational failure
+    // 1 : Successful connection, situational failure BAD
     // 2 : Connection error
     var dbErr : Int = 0
     var dbMessage : String = ""
