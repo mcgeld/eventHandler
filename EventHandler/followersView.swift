@@ -68,8 +68,25 @@ class followersView: UITableViewController, UITableViewDataSource, UITableViewDe
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         // you need to implement this method too or you can't swipe to display the actions
     }
-    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+       performSegueWithIdentifier("followersToProfile", sender: friends[indexPath.row])
+       
         
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "followersToProfile"
+        {
+            let detailViewController = segue.destinationViewController as! profileView
+            let indexPath = self.tableView.indexPathForSelectedRow()!
+            let friend=friends[indexPath.row];
+            detailViewController.profileUser = friend;
+            
+        }
+    }
+    
     
     
 }

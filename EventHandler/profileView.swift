@@ -29,16 +29,19 @@ class profileView : UIViewController {
     @IBOutlet weak var logoutButton: UIButton!
     
     override func viewDidLoad() {
-        firstNameLabel.text = user?.firstName
-        lastNameLabel.text = user?.lastName
-        userNameLabel.text = user?.username
-        phoneNumberLabel.text = String(user!.phoneNumber)
+      
         
         if profileUser == nil
         {
             profileUser = user
         }
+        firstNameLabel.text = profileUser?.firstName
+        lastNameLabel.text = profileUser?.lastName
+        userNameLabel.text = profileUser?.username
+        phoneNumberLabel.text = String(profileUser!.phoneNumber)
     }
+    
+ 
     
     @IBAction func friendsButtonPressed(sender: AnyObject)
     {

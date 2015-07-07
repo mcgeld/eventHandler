@@ -15,6 +15,7 @@ class friendContainerView: UITableViewController, UITableViewDataSource, UITable
  
     @IBOutlet var searchBar: UISearchBar!
     
+    var scope : Int=0;
    
     var friends : [User] = []
     
@@ -42,10 +43,29 @@ class friendContainerView: UITableViewController, UITableViewDataSource, UITable
     
     // MARK: - Table view data source
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int)
+    {
+        scope = selectedScope;
         
-       
-        self.tableView.reloadData()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        
+       if(count(searchText)>2)
+       {
+        
+            if(scope == 0)
+            {
+                friends=db.searchByUsername(searchText)!;
+            }
+            else
+            {
+                friends=db.searchByFullName(searchText)!;
+            }
+        
+            self.tableView.reloadData()
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
