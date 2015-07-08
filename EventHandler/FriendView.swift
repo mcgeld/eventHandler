@@ -18,8 +18,9 @@ class FriendView: UIViewController
     
     override func viewDidLoad()
     {
-        followersContainer.hidden=false;
+        followersContainer.hidden=true;
         followingContainer.hidden=true;
+        friendContainer.hidden=false;
         
         super.viewDidLoad();
     }

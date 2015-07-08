@@ -410,7 +410,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ue-tB-qO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3347" y="-1207"/>
+            <point key="canvasLocation" x="3773" y="-411"/>
         </scene>
         <!--Friend Container View-->
         <scene sceneID="exv-sq-NSs">
@@ -444,11 +444,12 @@
                     </tableView>
                     <connections>
                         <outlet property="searchBar" destination="UQQ-Uj-uzK" id="vpc-Mj-Bre"/>
+                        <segue destination="OzY-Jx-umO" kind="show" identifier="friendToProfile" id="vRf-cM-weM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZ7-Yx-OYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3852.5" y="-873"/>
+            <point key="canvasLocation" x="3814" y="-341"/>
         </scene>
         <!--Following View-->
         <scene sceneID="EHh-bf-WKD">
@@ -471,10 +472,13 @@
                             <outlet property="delegate" destination="uUw-wt-bTL" id="PJJ-eP-csL"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="OzY-Jx-umO" kind="show" identifier="followingToProfile" id="jKx-by-t3B"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfK-0U-PHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3978" y="-387"/>
+            <point key="canvasLocation" x="3902" y="-275"/>
         </scene>
         <!--Friend View-->
         <scene sceneID="GiL-8p-5vl">
@@ -1222,7 +1226,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eAX-OM-lmc"/>
-        <segue reference="5Ih-K9-1sC"/>
         <segue reference="fj2-Lp-5fL"/>
+        <segue reference="5Ih-K9-1sC"/>
     </inferredMetricsTieBreakers>
 </document>

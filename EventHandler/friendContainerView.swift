@@ -94,7 +94,24 @@ class friendContainerView: UITableViewController, UITableViewDataSource, UITable
     }
     
 
-
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        performSegueWithIdentifier("friendToProfile", sender: friends[indexPath.row])
+        
+        
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "friendToProfile"
+        {
+            let detailViewController = segue.destinationViewController as! profileView
+            let indexPath = self.tableView.indexPathForSelectedRow()!
+            let friend=friends[indexPath.row];
+            detailViewController.profileUser = friend;
+            
+        }
+    }
   
 
     

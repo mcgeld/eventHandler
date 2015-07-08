@@ -130,6 +130,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F1E91531B4B78180029ADEA /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				AD91959F1B38CDC700C53FBD /* followingView.swift */,
+				AD91959D1B38CD4C00C53FBD /* followersView.swift */,
+				AD91959B1B38C9D000C53FBD /* FriendView.swift */,
+				AD9195A11B391C0F00C53FBD /* friendContainerView.swift */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
 		FC9F23EA1B35ED2B00F3F5DB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,9 +159,9 @@
 		FC9F23EB1B35F09800F3F5DB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7F1E91531B4B78180029ADEA /* Friends */,
 				591F4DD81B1986CF0022B675 /* loginView.swift */,
 				AD0799261B1A20EA001211D3 /* mainTabView.swift */,
-				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
 				FC62400B1B2FB33C005359BE /* MenuController.swift */,
 				FC92C6841B17DE8800B0B2CE /* CreateEventViewController.swift */,
 				FCC0DA511B210F8F0084C1FA /* createEventDateView.swift */,
@@ -190,10 +201,6 @@
 				FCD552A11B2B9D6B00972CAD /* SideBar  */,
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
 				FC6240061B2FB2B0005359BE /* Main.storyboard */,
-				AD91959F1B38CDC700C53FBD /* followingView.swift */,
-				AD91959D1B38CD4C00C53FBD /* followersView.swift */,
-				AD91959B1B38C9D000C53FBD /* FriendView.swift */,
-				AD9195A11B391C0F00C53FBD /* friendContainerView.swift */,
 				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
 				FCD44E701AF88AC200F18D35 /* Images.xcassets */,
 				FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */,
