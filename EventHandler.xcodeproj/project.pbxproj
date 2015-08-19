@@ -20,6 +20,7 @@
 		591F4DD91B1986CF0022B675 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591F4DD81B1986CF0022B675 /* loginView.swift */; };
 		591F4DDB1B1990760022B675 /* profileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591F4DDA1B1990760022B675 /* profileView.swift */; };
 		59ED426C1B069AF500B23B9C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED426B1B069AF500B23B9C /* Database.swift */; };
+		7F9D1E291B842D46008D4DED /* createUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9D1E281B842D46008D4DED /* createUser.swift */; };
 		AD0799271B1A20EA001211D3 /* mainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0799261B1A20EA001211D3 /* mainTabView.swift */; };
 		AD1BC6B81B30E1F7002825A7 /* radius.png in Resources */ = {isa = PBXBuildFile; fileRef = AD1BC6B71B30E1F7002825A7 /* radius.png */; };
 		AD91959C1B38C9D000C53FBD /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD91959B1B38C9D000C53FBD /* FriendView.swift */; };
@@ -75,6 +76,7 @@
 		591F4DD81B1986CF0022B675 /* loginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		591F4DDA1B1990760022B675 /* profileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileView.swift; sourceTree = "<group>"; };
 		59ED426B1B069AF500B23B9C /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		7F9D1E281B842D46008D4DED /* createUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createUser.swift; sourceTree = "<group>"; };
 		AD0799261B1A20EA001211D3 /* mainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainTabView.swift; path = ../mainTabView.swift; sourceTree = "<group>"; };
 		AD1BC6B71B30E1F7002825A7 /* radius.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radius.png; sourceTree = "<group>"; };
 		AD91959B1B38C9D000C53FBD /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				FCD552A11B2B9D6B00972CAD /* SideBar  */,
 				FCD44E691AF88AC200F18D35 /* AppDelegate.swift */,
 				FC6240061B2FB2B0005359BE /* Main.storyboard */,
+				7F9D1E281B842D46008D4DED /* createUser.swift */,
 				ADD6D7281AF98C4C00A67045 /* mapView.swift */,
 				FCD44E701AF88AC200F18D35 /* Images.xcassets */,
 				FCD44E721AF88AC200F18D35 /* LaunchScreen.xib */,
@@ -386,6 +389,7 @@
 				FCD44E921AF8964400F18D35 /* Event.swift in Sources */,
 				FC92C6851B17DE8800B0B2CE /* CreateEventViewController.swift in Sources */,
 				FCD44E8A1AF88C0E00F18D35 /* User.swift in Sources */,
+				7F9D1E291B842D46008D4DED /* createUser.swift in Sources */,
 				FCC0DA521B210F900084C1FA /* createEventDateView.swift in Sources */,
 				FCD44E981AFC901400F18D35 /* Comment.swift in Sources */,
 				59ED426C1B069AF500B23B9C /* Database.swift in Sources */,
