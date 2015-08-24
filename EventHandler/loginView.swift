@@ -11,6 +11,7 @@ import Foundation
 
 class loginView: UIViewController, UITextFieldDelegate{
     
+    @IBOutlet weak var createNewUser: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -54,5 +55,11 @@ class loginView: UIViewController, UITextFieldDelegate{
             user = tempUser
             performSegueWithIdentifier("loginSegue", sender: nil)
         }
+    }
+    @IBAction func createNewUserPressed(sender: AnyObject)
+    {
+        
+        performSegueWithIdentifier("createUserSegue", sender: nil)
+        
     }
 }
