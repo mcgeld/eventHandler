@@ -57,10 +57,13 @@ class followingView: UITableViewController, UITableViewDataSource, UITableViewDe
         
         let unfollow = UITableViewRowAction(style: .Normal, title: "Unfollow") { action, index in
             println("more button tapped")
+            db.unfollowUser(user!.id, followId: self.friends[indexPath.row].id);
+            self.friends = db.getFollowing(user!.id)!;
+            tableView.reloadData();
         }
         unfollow.backgroundColor = UIColor.lightGrayColor()
+       
         
-     
         return [unfollow]
     }
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

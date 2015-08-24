@@ -53,6 +53,7 @@ class followersView: UITableViewController, UITableViewDataSource, UITableViewDe
         
         let block = UITableViewRowAction(style: .Normal, title: "Block") { action, index in
             println("more button tapped")
+            
         
         }
         block.backgroundColor = UIColor.lightGrayColor()
@@ -66,6 +67,8 @@ class followersView: UITableViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
         // you need to implement this method too or you can't swipe to display the actions
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
