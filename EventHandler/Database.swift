@@ -59,9 +59,8 @@ class Database {
                 let id = (innerResult![0]["id"] as! String).toInt()!
                 let firstName = innerResult![0]["firstName"] as! String
                 let lastName = innerResult![0]["lastName"] as! String
-                let phoneNumber = (innerResult![0]["phone"] as! String).toInt()!
             
-                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber)
+                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username)
             
                 return temp
             }
@@ -227,9 +226,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -268,9 +266,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -309,9 +306,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -350,9 +346,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
