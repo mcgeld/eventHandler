@@ -59,8 +59,9 @@ class Database {
                 let id = (innerResult![0]["id"] as! String).toInt()!
                 let firstName = innerResult![0]["firstName"] as! String
                 let lastName = innerResult![0]["lastName"] as! String
+                let email = innerResult![0]["email"] as! String
             
-                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username)
+                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _email: email)
             
                 return temp
             }
@@ -130,10 +131,10 @@ class Database {
         }
     }
     
-    func getEventsByUser(userId : Int) -> [Event]?
+    func getEventsByUser(userId : Int, creatorId : Int) -> [Event]?
     {
         dbErr = 0
-        if let result : NSDictionary = getWebResults(self.ip + "getEventsByUser.php?userId=" + String(userId))
+        if let result : NSDictionary = getWebResults(self.ip + "getEventsByUser.php?userId=" + String(userId) + "&creatorId=" + String(creatorId))
         {
             dbMessage = result["message"] as! String
             if(result["response"] as! String == "success")
@@ -226,8 +227,9 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
+                    let email = innerResult![i]["email"] as! String
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _email: email))
                 }
                 return returnList
             }
@@ -266,8 +268,9 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
+                    let email = innerResult![i]["email"] as! String
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _email: email))
                 }
                 return returnList
             }
@@ -306,8 +309,9 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
+                    let email = innerResult![i]["email"] as! String
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _email: email))
                 }
                 return returnList
             }
@@ -346,8 +350,9 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
+                    let email = innerResult![i]["email"] as! String
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _email: email))
                 }
                 return returnList
             }
@@ -436,5 +441,38 @@ class Database {
     {
         dbErr = 0;
         let result : NSDictionary = getWebResults(self.ip + "sendCreationEmail.php?userEmail=" + userEmail + "&pin=" + String(pinNum))!
+    }
+    
+    func createUser(_username : String, _password : String, _email : String, _firstName : String, _lastName : String) -> User?
+    {
+        dbErr = 0
+        if let result : NSDictionary = getWebResults(self.ip + "createEvent.php?username=" + String(_username) + "&password=" + _password + "&email=" + _email + "&firstName=" + _firstName + "&lastName=" + _lastName)
+        {
+            dbMessage = result["message"] as! String
+            if(result["response"] as! String == "success")
+            {
+                let innerResult = result["result"] as! NSArray?
+                
+                let id = (innerResult![0]["id"] as! String).toInt()!
+                
+                return User(_id: id, _firstName: _firstName, _lastName: _lastName, _username: _username, _email: _email)
+            }
+            else if(result["response"] as! String == "failure")
+            {
+                dbErr = 1
+                return nil
+            }
+            else
+            {
+                dbErr = 2
+                return nil
+            }
+        }
+        else
+        {
+            dbErr = 2
+            dbMessage = "Connection returned nil"
+            return nil
+        }
     }
 };
