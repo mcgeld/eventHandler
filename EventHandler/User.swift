@@ -14,16 +14,14 @@ class User
     var firstName : String
     var lastName : String
     var username : String
-    var phoneNumber : Int
     var theSpan:Double //The length in degrees the user wants to display local events
     
-    init(_id : Int, _firstName : String, _lastName : String, _username : String, _phoneNumber : Int)
+    init(_id : Int, _firstName : String, _lastName : String, _username : String)
     {
         self.id = _id
         self.firstName = _firstName
         self.lastName = _lastName
         self.username = _username
-        self.phoneNumber = _phoneNumber
         self.theSpan=0.045
     }
 }

@@ -59,9 +59,8 @@ class Database {
                 let id = (innerResult![0]["id"] as! String).toInt()!
                 let firstName = innerResult![0]["firstName"] as! String
                 let lastName = innerResult![0]["lastName"] as! String
-                let phoneNumber = (innerResult![0]["phone"] as! String).toInt()!
             
-                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber)
+                let temp : User = User(_id: id, _firstName: firstName, _lastName: lastName, _username: username)
             
                 return temp
             }
@@ -227,9 +226,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -268,9 +266,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -309,9 +306,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -350,9 +346,8 @@ class Database {
                     let firstName = innerResult![i]["firstName"] as! String
                     let lastName = innerResult![i]["lastName"] as! String
                     let username = innerResult![i]["username"] as! String
-                    let phoneNumber = (innerResult![i]["phone"] as! String).toInt()!
                     
-                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username, _phoneNumber: phoneNumber))
+                    returnList.append(User(_id: id, _firstName: firstName, _lastName: lastName, _username: username))
                 }
                 return returnList
             }
@@ -373,5 +368,73 @@ class Database {
             dbMessage = "Connection returned nil"
             return nil
         }
+    }
+    
+    func followUser(userId : Int, followId : Int) -> Bool
+    {
+        dbErr = 0;
+        if let result : NSDictionary = getWebResults(self.ip + "followUser.php?userId=" + String(userId) + "&followId=" + String(followId))
+        {
+            dbMessage = result["message"] as! String
+            if(result["response"] as! String == "success")
+            {
+                return true
+            }
+            else if(result["response"] as! String == "failure")
+            {
+                dbErr = 1
+                dbMessage = "Follow action failed. Either the user is already following that user, or one of the users doesn't exist";
+                return false
+            }
+            else
+            {
+                dbErr = 2
+                dbMessage = "The database query failed somehow";
+                return false
+            }
+        }
+        else
+        {
+            dbErr = 2
+            dbMessage = "Connection returned nil"
+            return false
+        }
+    }
+    
+    func unfollowUser(userId : Int, followId : Int) -> Bool
+    {
+        dbErr = 0;
+        if let result : NSDictionary = getWebResults(self.ip + "unfollowUser.php?userId=" + String(userId) + "&followId=" + String(followId))
+        {
+            dbMessage = result["message"] as! String
+            if(result["response"] as! String == "success")
+            {
+                return true
+            }
+            else if(result["response"] as! String == "failure")
+            {
+                dbErr = 1
+                dbMessage = "Unfollow action failed. Either the user is not following that user, or one of the users doesn't exist";
+                return false
+            }
+            else
+            {
+                dbErr = 2
+                dbMessage = "The database query failed somehow";
+                return false
+            }
+        }
+        else
+        {
+            dbErr = 2
+            dbMessage = "Connection returned nil"
+            return false
+        }
+    }
+    
+    func sendCreationPinEmail(userEmail : String, pinNum : Int)
+    {
+        dbErr = 0;
+        let result : NSDictionary = getWebResults(self.ip + "sendCreationEmail.php?userEmail=" + userEmail + "&pin=" + String(pinNum))!
     }
 };

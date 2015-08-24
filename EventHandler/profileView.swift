@@ -38,7 +38,6 @@ class profileView : UIViewController {
         firstNameLabel.text = profileUser?.firstName
         lastNameLabel.text = profileUser?.lastName
         userNameLabel.text = profileUser?.username
-        phoneNumberLabel.text = String(profileUser!.phoneNumber)
     }
     
  
