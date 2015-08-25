@@ -446,7 +446,7 @@ class Database {
     func createUser(_username : String, _password : String, _email : String, _firstName : String, _lastName : String) -> User?
     {
         dbErr = 0
-        if let result : NSDictionary = getWebResults(self.ip + "createEvent.php?username=" + String(_username) + "&password=" + _password + "&email=" + _email + "&firstName=" + _firstName + "&lastName=" + _lastName)
+        if let result : NSDictionary = getWebResults(self.ip + "createUser.php?username=" + String(_username) + "&password=" + _password + "&email=" + _email + "&firstName=" + _firstName + "&lastName=" + _lastName)
         {
             dbMessage = result["message"] as! String
             if(result["response"] as! String == "success")

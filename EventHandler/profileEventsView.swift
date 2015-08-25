@@ -25,12 +25,12 @@ class profileEventsView: UITableViewController, UITableViewDelegate {
         for i in events {
             println(i.description)
         }
-        myEvents = db.getEventsByUser(myUser!.id)
+        myEvents = db.getEventsByUser(user!.id,creatorId: myUser!.id)
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        myEvents = db.getEventsByUser(user!.id)
+        myEvents = db.getEventsByUser(user!.id,creatorId: myUser!.id)
         
         
         

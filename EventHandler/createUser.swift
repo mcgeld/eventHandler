@@ -12,7 +12,10 @@ import UIKit
 class createUser:UIViewController, UITextFieldDelegate
 {
     
-    var tempUser:User?
+    var firstName="";
+    var lastName="";
+    var userName="";
+    
     var pin=1;
     @IBOutlet weak var userNameTextBox: UITextField!
     
@@ -28,6 +31,9 @@ class createUser:UIViewController, UITextFieldDelegate
     @IBOutlet weak var passwordCheckTextBox: UITextField!
     @IBOutlet weak var verifyButtonOutlet: UIButton!
     @IBOutlet weak var passwordTextBox: UITextField!
+    
+    @IBOutlet weak var lastNameOutlet: UITextField!
+    
     override func viewDidLoad() {
         fieldsEmpty.hidden=true;
         emptyField=false;
@@ -98,6 +104,10 @@ class createUser:UIViewController, UITextFieldDelegate
         if(pass1==pass2)
         {
             println("correct passwords");
+           
+           user=db.createUser(userName, _password: passwordTextBox.text, _email: emailAddressTextBox.text, _firstName:firstName, _lastName: lastName);
+            performSegueWithIdentifier("newUserLogin", sender: nil)
+            
         
         }
         else
@@ -110,18 +120,18 @@ class createUser:UIViewController, UITextFieldDelegate
     @IBAction func userTextBoxDoneEditing(sender: AnyObject) {
         var text=userNameTextBox.text;
       
-            tempUser?.username=userNameTextBox.text
+            userName=userNameTextBox.text
    
     }
   
+    @IBAction func lastNameDoneEditing(sender: AnyObject) {
+        lastName=lastNameOutlet.text;
+        
+    }
     @IBAction func nameTextBoxDoneEditing(sender: AnyObject) {
         var text=userNameTextBox.text;
-      
+        firstName=text;
        
-            var nameArr=text.componentsSeparatedByString(" ")
-            tempUser?.firstName=nameArr[0];
-          
-            tempUser?.lastName=nameArr[1];
                 
           
      
